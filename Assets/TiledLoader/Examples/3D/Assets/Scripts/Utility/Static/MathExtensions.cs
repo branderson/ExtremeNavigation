@@ -1,0 +1,22 @@
+using System;
+
+namespace TiledLoader.Examples._3D.Utility.Static
+{
+    public class MathExtensions
+    {
+        public static int Mod(int x, int m)
+        {
+            return (x%m + m)%m;
+        }
+
+        public static long Mod(long x, long m)
+        {
+            return (x%m + m)%m;
+        }
+
+        public static float Mod(float x, float m)
+        {
+            return x - m*(float)Math.Floor((double)x/m);
+        }
+    }
+}

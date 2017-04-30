@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: f9c8e033b48f1b04da0f81bad8e9b228
+timeCreated: 1480998078
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Source Code Pro
+  fontNames:
+  - Source Code Pro
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f0b2c0910a711914f9eb9148ce54f2ba, type: 3}
+  - {fileID: 12800000, guid: 86a5a3129d90bc9429eb6c69d7fcfdba, type: 3}
+  - {fileID: 12800000, guid: 9c4b4d923e40d984ab72c42779ce29fb, type: 3}
+  - {fileID: 12800000, guid: 0c4d62c36316e954f9fc2b2cbc02d36a, type: 3}
+  - {fileID: 12800000, guid: e145c9e452152ba409a0f0afae7f97e5, type: 3}
+  - {fileID: 12800000, guid: c9c30706582f94942a7e943ff25a9bc9, type: 3}
+  - {fileID: 12800000, guid: 31e92866ee2e1e0478c998636c08c87a, type: 3}
+  - {fileID: 12800000, guid: ba1081a6095b8924295c626aaf9c25aa, type: 3}
+  - {fileID: 12800000, guid: b6af5f88508551e41bfd9b6596af3b8e, type: 3}
+  - {fileID: 12800000, guid: 1b3b8309ad4b18d42bb664cbda037f6b, type: 3}
+  - {fileID: 12800000, guid: 68221a8a55a75c149ad4e0627da53d43, type: 3}
+  - {fileID: 12800000, guid: a4f3e61b2d43255429696bd27433620e, type: 3}
+  - {fileID: 12800000, guid: 62e84a8c2d1f8f247b1bbc1afbd570b8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

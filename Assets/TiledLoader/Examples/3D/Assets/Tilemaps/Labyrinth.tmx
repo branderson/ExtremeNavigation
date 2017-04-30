@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="16" tileheight="16" nextobjectid="327">
+ <tileset firstgid="1" name="Tilesheet" tilewidth="16" tileheight="16" tilecount="58" columns="6">
+  <image source="../Sprites/Tilesheet.png" width="96" height="128"/>
+  <tile id="0">
+   <properties>
+    <property name="Name" value="StraightWall"/>
+    <property name="Rotation" value="0"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Name" value="StraightWall"/>
+    <property name="Rotation" value="90"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Name" value="Floor"/>
+    <property name="ScaleX" type="float" value="10"/>
+    <property name="ScaleY" type="float" value="10"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Enemy" value="10"/>
+    <property name="Height" value="2"/>
+    <property name="Name" value="Enemy1"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="Name" value="StraightEndWall"/>
+    <property name="Rotation" value="0"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Name" value="StraightEndWall"/>
+    <property name="Rotation" value="180"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="Name" value="StraightEndWall"/>
+    <property name="Rotation" value="270"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="Name" value="StraightEndWall"/>
+    <property name="Rotation" value="90"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="Name" value="CornerWall"/>
+    <property name="Rotation" value="90"/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="Name" value="CornerWall"/>
+    <property name="Rotation" value="180"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="Name" value="CornerWall"/>
+    <property name="Rotation" value="0"/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="Name" value="CornerWall"/>
+    <property name="Rotation" value="270"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="Name" value="PlusWall"/>
+   </properties>
+  </tile>
+  <tile id="31">
+   <properties>
+    <property name="Name" value="PlusEndWall"/>
+   </properties>
+  </tile>
+  <tile id="36">
+   <properties>
+    <property name="Name" value="TWall"/>
+    <property name="Rotation" value="0"/>
+   </properties>
+  </tile>
+  <tile id="37">
+   <properties>
+    <property name="Name" value="TWall"/>
+    <property name="Rotation" value="180"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="Name" value="TWall"/>
+    <property name="Rotation" value="270"/>
+   </properties>
+  </tile>
+  <tile id="43">
+   <properties>
+    <property name="Name" value="TWall"/>
+    <property name="Rotation" value="90"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Map" width="100" height="100">
+  <properties>
+   <property name="Combine" value="true"/>
+   <property name="Height" value="0"/>
+   <property name="Layer" value="Baked Lighting"/>
+   <property name="Static" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt2sFygjAQgOHYi73XS73IRS7y/s9X02Fn4nYTEgXZwv/NMEiJjGSTLAkNAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAePZ13z7u22ntH4LfWJzHz9+BmKztMHGM95L6lzHrXCiL5R3UHusiHr4QD1+Ihy/Ewxfi4Qvx8EXHQ+YhUxvz+GXoeNT2E/rTMqReb6Fufn5U38O8avtF11gez9H1e0zOdRXlU7W5p7Rdw77zU2v+KJWbo8/srf/pNjyMfy/VQ5d8Xjoet3Hfh330k9z7jk913E18f+n+Mec1PdN5ovX+3xWPvbyPkfuN72bj/fbjseTRy3icy7dSvjfOzVF3up9uXe4+veVRL79jabl1kV7tp9ZJrGfb63ju1WfeSJ4ztiitOxlTnm1/S+ePJa7lzZx1l8ZD/9+W5KQ5ti3ncWuMyt1vWsZ69pf5wRDyfYX/rytrydUH47MVxxiX3LPWkJRhff4vvYYb6ya31iT1Hc9fwmP9zvEbYK9R1cz7rHdV0s7Ttq83q39sOR+0suKRy71pbpY6TOdoNWOft7mMJ7FNp+O87HOxKNVhbO8yfx+CPeadwmPOx6OWNpq2f6uuYxzPRll9DeKRl45LU884teORLpvmlZZr7N2zOdzKL7qslZvI4WU6Hp1xfup9YS4G9Il2Nf0jXYe32niuH5Az2k3Fo2b9KfeM9uo65R69o66IR72W9dfSe469rsuuifzsC/HwhXj4Qjx8+W9z7B9WQQ/4
+  </data>
+ </layer>
+ <layer name="Floor" width="100" height="100">
+  <properties>
+   <property name="Height" value="0"/>
+   <property name="Layer" value="Baked Lighting"/>
+   <property name="Static" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzgEJAAAIA7CD/Tsb44hbgiUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwx7QAAAAAAAMADC+j8AAQ=
+  </data>
+ </layer>
+ <objectgroup name="Enemies">
+  <properties>
+   <property name="Height" type="float" value="2"/>
+  </properties>
+  <object id="33" name="Enemy1" gid="6" x="816" y="1456" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="1"/>
+    <property name="ID" type="int" value="1"/>
+    <property name="Speed" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="165" name="Enemy1" gid="6" x="944" y="1392" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="5"/>
+    <property name="ID" type="int" value="2"/>
+    <property name="Speed" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="240" name="Enemy1" gid="6" x="1152" y="1424" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="14"/>
+    <property name="ID" type="int" value="3"/>
+    <property name="Speed" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="252" name="Enemy1" gid="6" x="1328" y="1168" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="32"/>
+    <property name="ID" type="int" value="6"/>
+    <property name="Speed" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="253" name="Enemy1" gid="6" x="1248" y="1184" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="24"/>
+    <property name="ID" type="int" value="5"/>
+    <property name="Speed" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="254" name="Enemy1" gid="6" x="1168" y="1168" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="16"/>
+    <property name="ID" type="int" value="4"/>
+    <property name="Speed" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="281" name="Enemy1" gid="6" x="880" y="1216" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="40"/>
+    <property name="ID" type="int" value="7"/>
+    <property name="Speed" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="282" name="Enemy1" gid="6" x="976" y="1120" width="16" height="16">
+   <properties>
+    <property name="Destination" type="int" value="52"/>
+    <property name="ID" type="int" value="8"/>
+    <property name="Speed" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Waypoints">
+  <properties>
+   <property name="Height" type="float" value="2"/>
+  </properties>
+  <object id="28" name="Waypoint" gid="5" x="816" y="1488" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="1"/>
+    <property name="NextID" type="int" value="2"/>
+    <property name="PreviousID" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="29" name="Waypoint" gid="5" x="752" y="1488" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="2"/>
+    <property name="NextID" type="int" value="3"/>
+    <property name="PreviousID" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="30" name="Waypoint" gid="5" x="752" y="1424" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="3"/>
+    <property name="NextID" type="int" value="4"/>
+    <property name="PreviousID" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="31" name="Waypoint" gid="5" x="816" y="1424" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="4"/>
+    <property name="NextID" type="int" value="1"/>
+    <property name="PreviousID" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="166" name="Waypoint" gid="5" x="880" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="6"/>
+    <property name="NextID" type="int" value="7"/>
+    <property name="PreviousID" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="167" name="Waypoint" gid="5" x="880" y="1440" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="7"/>
+    <property name="NextID" type="int" value="8"/>
+    <property name="PreviousID" type="int" value="6"/>
+   </properties>
+  </object>
+  <object id="168" name="Waypoint" gid="5" x="880" y="1360" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="8"/>
+    <property name="NextID" type="int" value="9"/>
+    <property name="PreviousID" type="int" value="7"/>
+   </properties>
+  </object>
+  <object id="169" name="Waypoint" gid="5" x="800" y="1360" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="9"/>
+    <property name="NextID" type="int" value="10"/>
+    <property name="PreviousID" type="int" value="8"/>
+   </properties>
+  </object>
+  <object id="170" name="Waypoint" gid="5" x="928" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="5"/>
+    <property name="NextID" type="int" value="6"/>
+    <property name="PreviousID" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="178" name="Waypoint" gid="5" x="928" y="1360" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="13"/>
+    <property name="NextID" type="int" value="5"/>
+    <property name="PreviousID" type="int" value="12"/>
+   </properties>
+  </object>
+  <object id="179" name="Waypoint" gid="5" x="880" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="11"/>
+    <property name="NextID" type="int" value="12"/>
+    <property name="PreviousID" type="int" value="10"/>
+   </properties>
+  </object>
+  <object id="241" name="Waypoint" gid="5" x="1152" y="1344" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="15"/>
+    <property name="NextID" type="int" value="100"/>
+    <property name="PreviousID" type="int" value="14"/>
+   </properties>
+  </object>
+  <object id="242" name="Waypoint" gid="5" x="1152" y="1424" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="14"/>
+    <property name="NextID" type="int" value="15"/>
+    <property name="PreviousID" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="243" name="Waypoint" gid="5" x="880" y="1360" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="10"/>
+    <property name="NextID" type="int" value="11"/>
+    <property name="PreviousID" type="int" value="9"/>
+   </properties>
+  </object>
+  <object id="246" name="Waypoint" gid="5" x="928" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="12"/>
+    <property name="NextID" type="int" value="13"/>
+    <property name="PreviousID" type="int" value="11"/>
+   </properties>
+  </object>
+  <object id="255" name="Waypoint" gid="5" x="1136" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="18"/>
+    <property name="NextID" type="int" value="19"/>
+    <property name="PreviousID" type="int" value="17"/>
+   </properties>
+  </object>
+  <object id="256" name="Waypoint" gid="5" x="1152" y="1248" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="19"/>
+    <property name="NextID" type="int" value="20"/>
+    <property name="PreviousID" type="int" value="18"/>
+   </properties>
+  </object>
+  <object id="257" name="Waypoint" gid="5" x="1184" y="1248" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="20"/>
+    <property name="NextID" type="int" value="21"/>
+    <property name="PreviousID" type="int" value="19"/>
+   </properties>
+  </object>
+  <object id="258" name="Waypoint" gid="5" x="1200" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="21"/>
+    <property name="NextID" type="int" value="22"/>
+    <property name="PreviousID" type="int" value="20"/>
+   </properties>
+  </object>
+  <object id="259" name="Waypoint" gid="5" x="1200" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="22"/>
+    <property name="NextID" type="int" value="23"/>
+    <property name="PreviousID" type="int" value="21"/>
+   </properties>
+  </object>
+  <object id="260" name="Waypoint" gid="5" x="1184" y="1168" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="23"/>
+    <property name="NextID" type="int" value="16"/>
+    <property name="PreviousID" type="int" value="22"/>
+   </properties>
+  </object>
+  <object id="261" name="Waypoint" gid="5" x="1152" y="1168" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="16"/>
+    <property name="NextID" type="int" value="17"/>
+    <property name="PreviousID" type="int" value="23"/>
+   </properties>
+  </object>
+  <object id="262" name="Waypoint" gid="5" x="1136" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="17"/>
+    <property name="NextID" type="int" value="18"/>
+    <property name="PreviousID" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="263" name="Waypoint" gid="5" x="1232" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="24"/>
+    <property name="NextID" type="int" value="25"/>
+    <property name="PreviousID" type="int" value="31"/>
+   </properties>
+  </object>
+  <object id="264" name="Waypoint" gid="5" x="1216" y="1200" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="25"/>
+    <property name="NextID" type="int" value="26"/>
+    <property name="PreviousID" type="int" value="24"/>
+   </properties>
+  </object>
+  <object id="265" name="Waypoint" gid="5" x="1216" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="26"/>
+    <property name="NextID" type="int" value="27"/>
+    <property name="PreviousID" type="int" value="25"/>
+   </properties>
+  </object>
+  <object id="266" name="Waypoint" gid="5" x="1232" y="1248" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="27"/>
+    <property name="NextID" type="int" value="28"/>
+    <property name="PreviousID" type="int" value="26"/>
+   </properties>
+  </object>
+  <object id="267" name="Waypoint" gid="5" x="1264" y="1248" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="28"/>
+    <property name="NextID" type="int" value="29"/>
+    <property name="PreviousID" type="int" value="27"/>
+   </properties>
+  </object>
+  <object id="268" name="Waypoint" gid="5" x="1280" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="29"/>
+    <property name="NextID" type="int" value="30"/>
+    <property name="PreviousID" type="int" value="28"/>
+   </properties>
+  </object>
+  <object id="269" name="Waypoint" gid="5" x="1280" y="1200" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="30"/>
+    <property name="NextID" type="int" value="31"/>
+    <property name="PreviousID" type="int" value="29"/>
+   </properties>
+  </object>
+  <object id="270" name="Waypoint" gid="5" x="1264" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="31"/>
+    <property name="NextID" type="int" value="24"/>
+    <property name="PreviousID" type="int" value="30"/>
+   </properties>
+  </object>
+  <object id="271" name="Waypoint" gid="5" x="1360" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="38"/>
+    <property name="NextID" type="int" value="39"/>
+    <property name="PreviousID" type="int" value="37"/>
+   </properties>
+  </object>
+  <object id="272" name="Waypoint" gid="5" x="1344" y="1168" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="39"/>
+    <property name="NextID" type="int" value="32"/>
+    <property name="PreviousID" type="int" value="38"/>
+   </properties>
+  </object>
+  <object id="273" name="Waypoint" gid="5" x="1312" y="1168" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="32"/>
+    <property name="NextID" type="int" value="33"/>
+    <property name="PreviousID" type="int" value="39"/>
+   </properties>
+  </object>
+  <object id="274" name="Waypoint" gid="5" x="1296" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="33"/>
+    <property name="NextID" type="int" value="34"/>
+    <property name="PreviousID" type="int" value="32"/>
+   </properties>
+  </object>
+  <object id="275" name="Waypoint" gid="5" x="1296" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="34"/>
+    <property name="NextID" type="int" value="35"/>
+    <property name="PreviousID" type="int" value="33"/>
+   </properties>
+  </object>
+  <object id="277" name="Waypoint" gid="5" x="1312" y="1248" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="35"/>
+    <property name="NextID" type="int" value="36"/>
+    <property name="PreviousID" type="int" value="34"/>
+   </properties>
+  </object>
+  <object id="278" name="Waypoint" gid="5" x="1344" y="1248" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="36"/>
+    <property name="NextID" type="int" value="37"/>
+    <property name="PreviousID" type="int" value="35"/>
+   </properties>
+  </object>
+  <object id="279" name="Waypoint" gid="5" x="1360" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="37"/>
+    <property name="NextID" type="int" value="38"/>
+    <property name="PreviousID" type="int" value="36"/>
+   </properties>
+  </object>
+  <object id="284" name="Waypoint" gid="5" x="880" y="1136" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="40"/>
+    <property name="NextID" type="int" value="41"/>
+    <property name="PreviousID" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="285" name="Waypoint" gid="5" x="848" y="1136" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="41"/>
+    <property name="NextID" type="int" value="42"/>
+    <property name="PreviousID" type="int" value="40"/>
+   </properties>
+  </object>
+  <object id="286" name="Waypoint" gid="5" x="848" y="1216" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="42"/>
+    <property name="NextID" type="int" value="43"/>
+    <property name="PreviousID" type="int" value="41"/>
+   </properties>
+  </object>
+  <object id="287" name="Waypoint" gid="5" x="816" y="1216" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="43"/>
+    <property name="NextID" type="int" value="44"/>
+    <property name="PreviousID" type="int" value="42"/>
+   </properties>
+  </object>
+  <object id="288" name="Waypoint" gid="5" x="816" y="944" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="44"/>
+    <property name="NextID" type="int" value="45"/>
+    <property name="PreviousID" type="int" value="43"/>
+   </properties>
+  </object>
+  <object id="289" name="Waypoint" gid="5" x="832" y="944" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="45"/>
+    <property name="NextID" type="int" value="46"/>
+    <property name="PreviousID" type="int" value="44"/>
+   </properties>
+  </object>
+  <object id="290" name="Waypoint" gid="5" x="816" y="944" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="46"/>
+    <property name="NextID" type="int" value="47"/>
+    <property name="PreviousID" type="int" value="45"/>
+   </properties>
+  </object>
+  <object id="291" name="Waypoint" gid="5" x="816" y="1216" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="47"/>
+    <property name="NextID" type="int" value="48"/>
+    <property name="PreviousID" type="int" value="46"/>
+   </properties>
+  </object>
+  <object id="292" name="Waypoint" gid="5" x="848" y="1216" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="48"/>
+    <property name="NextID" type="int" value="49"/>
+    <property name="PreviousID" type="int" value="47"/>
+   </properties>
+  </object>
+  <object id="293" name="Waypoint" gid="5" x="848" y="1136" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="49"/>
+    <property name="NextID" type="int" value="50"/>
+    <property name="PreviousID" type="int" value="48"/>
+   </properties>
+  </object>
+  <object id="294" name="Waypoint" gid="5" x="880" y="1136" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="50"/>
+    <property name="NextID" type="int" value="51"/>
+    <property name="PreviousID" type="int" value="49"/>
+   </properties>
+  </object>
+  <object id="295" name="Waypoint" gid="5" x="880" y="1200" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="51"/>
+    <property name="NextID" type="int" value="40"/>
+    <property name="PreviousID" type="int" value="50"/>
+   </properties>
+  </object>
+  <object id="296" name="Waypoint" gid="5" x="912" y="1120" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="52"/>
+    <property name="NextID" type="int" value="53"/>
+    <property name="PreviousID" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="297" name="Waypoint" gid="5" x="896" y="1136" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="53"/>
+    <property name="NextID" type="int" value="54"/>
+    <property name="PreviousID" type="int" value="52"/>
+   </properties>
+  </object>
+  <object id="298" name="Waypoint" gid="5" x="896" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="54"/>
+    <property name="NextID" type="int" value="55"/>
+    <property name="PreviousID" type="int" value="53"/>
+   </properties>
+  </object>
+  <object id="304" name="Waypoint" gid="5" x="912" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="55"/>
+    <property name="NextID" type="int" value="56"/>
+    <property name="PreviousID" type="int" value="54"/>
+   </properties>
+  </object>
+  <object id="305" name="Waypoint" gid="5" x="912" y="1200" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="56"/>
+    <property name="NextID" type="int" value="57"/>
+    <property name="PreviousID" type="int" value="55"/>
+   </properties>
+  </object>
+  <object id="306" name="Waypoint" gid="5" x="960" y="1200" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="57"/>
+    <property name="NextID" type="int" value="58"/>
+    <property name="PreviousID" type="int" value="56"/>
+   </properties>
+  </object>
+  <object id="307" name="Waypoint" gid="5" x="976" y="1152" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="58"/>
+    <property name="NextID" type="int" value="59"/>
+    <property name="PreviousID" type="int" value="57"/>
+   </properties>
+  </object>
+  <object id="308" name="Waypoint" gid="5" x="976" y="1136" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="59"/>
+    <property name="NextID" type="int" value="60"/>
+    <property name="PreviousID" type="int" value="58"/>
+   </properties>
+  </object>
+  <object id="309" name="Waypoint" gid="5" x="976" y="1120" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="60"/>
+    <property name="NextID" type="int" value="61"/>
+    <property name="PreviousID" type="int" value="59"/>
+   </properties>
+  </object>
+  <object id="310" name="Waypoint" gid="5" x="960" y="1120" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="61"/>
+    <property name="NextID" type="int" value="52"/>
+    <property name="PreviousID" type="int" value="60"/>
+   </properties>
+  </object>
+  <object id="326" name="Waypoint" gid="5" x="1040" y="1344" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="100"/>
+    <property name="NextID" type="int" value="0"/>
+    <property name="PreviousID" type="int" value="15"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Doors">
+  <object id="150" name="Door" gid="4" x="736" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="17"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value="icecream"/>
+   </properties>
+  </object>
+  <object id="180" name="Door" gid="4" x="1024" y="1328" width="16" height="16" rotation="90">
+   <properties>
+    <property name="ID" type="int" value="4"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="187" name="Door" gid="4" x="1056" y="1328" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="9"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="192" name="Door" gid="4" x="1008" y="1312" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="10"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value="frenchfry"/>
+   </properties>
+  </object>
+  <object id="195" name="Door" gid="4" x="1120" y="1264" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="11"/>
+    <property name="Open" type="bool" value="true"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="196" name="Door" gid="4" x="1392" y="1264" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="12"/>
+    <property name="Open" type="bool" value="true"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="198" name="Door" gid="4" x="1392" y="1184" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="13"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="223" name="Door" gid="4" x="1136" y="1328" width="16" height="16" rotation="90">
+   <properties>
+    <property name="ID" type="int" value="5"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="228" name="Door" gid="4" x="1152" y="1408" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="7"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="237" name="Door" gid="4" x="1168" y="1328" width="16" height="16" rotation="90">
+   <properties>
+    <property name="ID" type="int" value="6"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="239" name="Door" gid="4" x="1152" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="8"/>
+    <property name="Open" type="bool" value="true"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="247" name="Door" gid="4" x="1008" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="3"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value="pizza"/>
+   </properties>
+  </object>
+  <object id="248" name="Door" gid="4" x="1008" y="1488" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="2"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="250" name="Door" gid="4" x="1104" y="1472" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="1"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="280" name="Door" gid="4" x="1008" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="13"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="311" name="Door" gid="4" x="880" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="14"/>
+    <property name="Open" type="bool" value="true"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="312" name="Door" gid="4" x="704" y="1392" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="16"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+  <object id="323" name="Door" gid="4" x="816" y="1232" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="15"/>
+    <property name="Open" type="bool" value="false"/>
+    <property name="Passcode" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Passcode">
+  <properties>
+   <property name="Height" type="float" value="2"/>
+  </properties>
+  <object id="152" name="Passcode" gid="10" x="1072" y="1440" width="16" height="16" rotation="90">
+   <properties>
+    <property name="Code" value="pizza"/>
+    <property name="ID" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="222" name="Passcode" gid="10" x="1056" y="1296" width="16" height="16">
+   <properties>
+    <property name="Code" value="frenchfry"/>
+    <property name="ID" type="int" value="10"/>
+   </properties>
+  </object>
+  <object id="313" name="Passcode" gid="10" x="800" y="1200" width="16" height="16" rotation="90">
+   <properties>
+    <property name="Code" value="icecream"/>
+    <property name="ID" type="int" value="17"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Commands">
+  <properties>
+   <property name="Height" type="float" value="2"/>
+  </properties>
+  <object id="154" name="Command" gid="11" x="928" y="1440" width="16" height="16" rotation="90">
+   <properties>
+    <property name="ID" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="197" name="Command" gid="11" x="1392" y="1152" width="16" height="16">
+   <properties>
+    <property name="ID" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="238" name="Command" gid="11" x="1216" y="1328" width="16" height="16" rotation="90">
+   <properties>
+    <property name="ID" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="314" name="Command" gid="11" x="864" y="928" width="16" height="16" rotation="90">
+   <properties>
+    <property name="ID" type="int" value="4"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Switch">
+  <object id="163" name="Switch" gid="12" x="880" y="1456" width="16" height="16">
+   <properties>
+    <property name="DoorIDs" value="4"/>
+    <property name="ID" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="164" name="Switch" gid="12" x="784" y="1344" width="16" height="16" rotation="90">
+   <properties>
+    <property name="DoorIDs" value="5"/>
+    <property name="ID" type="int" value="3"/>
+   </properties>
+  </object>
+  <object id="224" name="Switch" gid="12" x="1152" y="1328" width="16" height="16">
+   <properties>
+    <property name="DoorIDs" value="6, 7, 9"/>
+    <property name="ID" type="int" value="4"/>
+   </properties>
+  </object>
+  <object id="249" name="Switch" gid="12" x="688" y="1392" width="16" height="16" rotation="90">
+   <properties>
+    <property name="DoorIDs" value="2"/>
+    <property name="ID" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="251" name="Switch" gid="12" x="1424" y="1184" width="16" height="16" rotation="90">
+   <properties>
+    <property name="DoorIDs" value="11, 12, 13"/>
+    <property name="ID" type="int" value="5"/>
+   </properties>
+  </object>
+  <object id="315" name="Switch" gid="12" x="832" y="928" width="16" height="16">
+   <properties>
+    <property name="DoorIDs" value="13, 14, 15, 16"/>
+    <property name="ID" type="int" value="6"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Winpoint">
+  <object id="324" name="Winpoint" gid="5" x="736" y="1344" width="16" height="16"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="Layout" tilewidth="32" tileheight="32" tilecount="16" columns="4">
+  <image source="Tilesets/Spritesheet.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="17" name="Traffic" tilewidth="32" tileheight="32" tilecount="2" columns="2">
+  <image source="Tilesets/TrafficSquares.png" width="64" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="TrafficLevel" type="int" value="1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="TrafficLevel" type="int" value="2"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Layout" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="Traffic" width="50" height="50" opacity="0.4">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+ <layer name="Obstacles" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+</map>

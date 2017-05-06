@@ -56,6 +56,9 @@ MonoBehaviour:
   _redTime: 2
   _yellowRoadTileset: {fileID: 2800000, guid: c42622036022f0e419700af71a372a93, type: 3}
   _redRoadTileset: {fileID: 2800000, guid: a83d579e634360649a84658a47decaa5, type: 3}
+  _yellowMinimapTileset: {fileID: 2800000, guid: e21409666935daa47ae6958962c520c7,
+    type: 3}
+  _redMinimapTileset: {fileID: 2800000, guid: 04d9f8c4762945b4b8f028a8464fb58b, type: 3}
 --- !u!212 &212593373684890714
 SpriteRenderer:
   m_ObjectHideFlags: 1

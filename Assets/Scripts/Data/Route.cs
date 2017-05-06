@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Data
 {
@@ -21,7 +22,7 @@ namespace Data
     [Serializable]
     public class Route
     {
-        private readonly List<Move> _moves;
+        [SerializeField] private List<Move> _moves;
 
         [NonSerialized] private int _movesIndex;
 

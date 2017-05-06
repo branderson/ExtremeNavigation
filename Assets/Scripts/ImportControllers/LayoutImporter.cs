@@ -1,5 +1,7 @@
-﻿using Data;
+﻿using System.Linq;
+using Data;
 using TiledLoader;
+using UnityEditor;
 using UnityEngine;
 
 namespace ImportControllers
@@ -7,10 +9,45 @@ namespace ImportControllers
     [ExecuteInEditMode]
     public class LayoutImporter : MonoBehaviour
     {
+        [SerializeField] private Texture2D _minimapSpritesheet;
+
         private void HandleInstanceProperties()
         {
-            SetDirections();
+            SetMinimapSprite();
+            if (GetComponent<RoadTile>() != null)
+            {
+                SetDirections();
+            }
+            DestroyImmediate(GetComponent<TiledLoaderProperties>());
             DestroyImmediate(this, true);
+        }
+
+        /// <summary>
+        /// Create sprite object to display on minimap and set its sprite
+        /// </summary>
+        private void SetMinimapSprite()
+        {
+            // Instantiate minimap sprite object
+            GameObject minimapSprite = new GameObject("Minimap Sprite");
+            minimapSprite.transform.parent = transform;
+            minimapSprite.transform.localPosition = Vector3.zero;
+            minimapSprite.transform.localRotation = Quaternion.identity;
+            minimapSprite.layer = LayerMask.NameToLayer("Minimap");
+            SpriteRenderer sprite = minimapSprite.AddComponent<SpriteRenderer>();
+
+            // Get index of tile in tileset
+            int tileIndex;
+            string indexString = new string(name.Where(item => char.IsDigit(item)).ToArray());
+            int.TryParse(indexString, out tileIndex);
+
+            // Get tileset as array of sprites
+            string tilesetPath = AssetDatabase.GetAssetPath(_minimapSpritesheet);
+            Sprite[] tilesetSprites = AssetDatabase.LoadAllAssetRepresentationsAtPath(tilesetPath).OfType<Sprite>().ToArray();
+
+            if (tileIndex >= tilesetSprites.Length) return;
+
+            // Replace sprite
+            sprite.sprite = tilesetSprites[tileIndex];
         }
 
         /// <summary>

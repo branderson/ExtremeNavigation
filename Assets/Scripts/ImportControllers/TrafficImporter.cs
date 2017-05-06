@@ -15,6 +15,8 @@ namespace ImportControllers
         [SerializeField] private int _redTime = 2;
         [SerializeField] private Texture2D _yellowRoadTileset;
         [SerializeField] private Texture2D _redRoadTileset;
+        [SerializeField] private Texture2D _yellowMinimapTileset;
+        [SerializeField] private Texture2D _redMinimapTileset;
 
         private void HandleInstanceProperties()
         {
@@ -50,12 +52,12 @@ namespace ImportControllers
             RoadTile roadTile = layoutTile.GetComponent<RoadTile>();
             if (trafficLevel == 1)
             {
-                ReplaceTile(layoutTile, tileIndex, _yellowRoadTileset);
+                ReplaceTile(layoutTile, tileIndex, _yellowRoadTileset, _yellowMinimapTileset);
                 roadTile.AddTime(_yellowTime);
             }
             else if (trafficLevel == 2)
             {
-                ReplaceTile(layoutTile, tileIndex, _redRoadTileset);
+                ReplaceTile(layoutTile, tileIndex, _redRoadTileset, _redMinimapTileset);
                 roadTile.AddTime(_redTime);
             }
         }
@@ -97,9 +99,15 @@ namespace ImportControllers
         /// <param name="replacementTileset">
         /// Tileset of sprite to replace sprite with
         /// </param>
-        private void ReplaceTile(GameObject layoutTile, int tileIndex, Texture2D replacementTileset)
+        /// <param name="minimapTileset">
+        /// Tileset of minimap sprite to replace minimap sprite with
+        /// </param>
+        private void ReplaceTile(GameObject layoutTile, int tileIndex, Texture2D replacementTileset, Texture2D minimapTileset)
         {
+            // Get this object's SpriteRenderer
             SpriteRenderer layoutSprite = layoutTile.GetComponent<SpriteRenderer>();
+            // Get child SpriteRenderer
+            SpriteRenderer minimapSprite = layoutTile.GetComponentsInChildren<SpriteRenderer>().FirstOrDefault(item => item != layoutSprite);
 
             // Get tileset as array of sprites
             string tilesetPath = AssetDatabase.GetAssetPath(replacementTileset);
@@ -109,6 +117,14 @@ namespace ImportControllers
 
             // Replace sprite
             layoutSprite.sprite = tilesetSprites[tileIndex];
+
+            if (minimapSprite != null)
+            {
+                string minimapTilesetPath = AssetDatabase.GetAssetPath(minimapTileset);
+                Sprite[] minimapTilesetSprites = AssetDatabase.LoadAllAssetRepresentationsAtPath(minimapTilesetPath).OfType<Sprite>().ToArray();
+                // Replace minimapSprite
+                minimapSprite.sprite = minimapTilesetSprites[tileIndex];
+            }
         }
     }
 }

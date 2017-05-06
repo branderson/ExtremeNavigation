@@ -18,12 +18,13 @@ MonoBehaviour:
   TiledLoaderPath: TiledLoader
   DefaultScalingFactor: 1
   ParentTilesToLayers: 1
-  ParentLayersToTiledLoader: 1
+  ParentLayersToMap: 1
   MapTiledYToUnityZ: 0
   IgnoreLayerVisible: 0
   DockWindows: 1
   WarnUnmatchedTiles: 1
   DefaultLayerPrefab: {fileID: 0}
+  DefaultMapPrefab: {fileID: 0}
   ScaleProperty: Scale
   ScaleXProperty: ScaleX
   ScaleYProperty: ScaleY
@@ -36,3 +37,4 @@ MonoBehaviour:
   DefaultObjectPrefab: {fileID: 0}
   InstanceComponent: {fileID: 0}
   LayerComponent: {fileID: 0}
+  MapComponent: {fileID: 0}

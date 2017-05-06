@@ -49,6 +49,8 @@ TiledLoader is capable of loading in Tiled object layers as well as tile layers.
 
 Objects differ from tiles in that they are matched with prefab based on the object's Name, rather than a <b>Name</b> Custom Property, and each have their own set of Custom Properties, rotation, and scaling, while tiles share the same Custom Properties across all instances. Object visibility is determined by the object's <b>Visible</b> checkbox, just like layers, instead of a Custom Property. They are also not constrained to a grid. These features make Tiled objects ideal for one-off objects or objects which must be different with each instance.
 
+Tiled objects without a Name will be loaded in with the TiledID assigned to their tile (either through prefab-based or spritesheet-based importing) if the object is placed as a tile. Non-tile Tiled objects without a Name will be loaded in as <b>Default Object Prefab</b> or as an empty GameObject if no default object prefab is assigned.
+
 An object's Tiled rotation value will be passed in to TiledLoader as <b>Rotation</b> and will be added to the object's <b>Rotation</b> Custom Property if one is set.
 
 An object's Tiled width and height will be passed in to TiledLoader as <b>ScaleX</b> and <b>ScaleY</b> respectively as a ratio of the object's width and height values to the Tiled map's tile width and tile height values (meaning if the object's width is set to 24 in Tiled and the map's tile width value is set to 16, the value of <b>ScaleX</b> will be 1.5). These scale values will be multiplied by the objects corresponding Custom Properties if they are set.
@@ -95,7 +97,7 @@ ID to assign to tile to link it to its corresponding prefab in Unity. Should mat
 Angle in degrees to rotate prefab by around Tiled's out-of-screen axis when it is instantiated in Unity.
 
 ### Height [float]
-Position along Tiled's out-of-screen axis to instantiate prefab at in Unity. Scaled by Tiled to Unity Scale Factor.
+Position along Tiled's out-of-screen axis to instantiate prefab at in Unity. Scaled by Tiled to Unity Scale Factor. The value of this property is inverted if Unity is in 2D mode so that positive values correpond to tiles that are closer to the camera.
 
 ### Visible [bool]
 Whether to instantiate the tile as active or not. See <b>Visibility</b> under "Features" section above for more information.
@@ -120,7 +122,7 @@ Unity layer to assign prefab instance. Overrides layer's Layer property if set. 
 ID to assign to layer to link it to its corresponding prefab in Unity. Should match prefab's TiledID.
 
 ### Height [float]
-Unity layer to assign prefab instance. Overrides layer's Layer property if set. If layer is not a valid layer in Unity, instance's layer will not be changed.
+Position along Tiled's out-of-screen axis to instantiate layer prefab at in Unity. Scaled by Tiled to Unity Scale Factor. The value of this property is inverted if Unity is in 2D mode so that positive values correpond to tiles that are closer to the camera.
 
 ### [PRO] Combine [bool]
 Whether to combine all meshes of prefabs in the layer into one mesh. Material of resulting mesh will be set to Default Combine Material. Note that this operation will disable all GameObjects in the layer which contain a MeshFilter component, so meshes should be moved to a child object if their GameObjects contain other components. This property will be ignored if <b>Parent Tiles to Layers</b> is turned off.
@@ -147,7 +149,7 @@ Custom property name to use for matching tiles to prefabs
 Custom property name to use for rotation of prefabs around Tiled's Z axis (out of the screen)
 
 ### Z-Axis Property
-Custom property name to use for offsets along Tiled's Z-axis for layers and tiles
+Custom property name to use for offsets along Tiled's Z-axis for layers and tiles.
 
 ### Visible Property
 Custom property name to use for whether tile instances are set as active on instantiation or not
@@ -191,14 +193,17 @@ Prefab to instantiate for unnamed Tiled Objects. An empty GameObject will be ins
 ### Default Layer Prefab
 Prefab to instantiate for unnamed layer objects. An empty GameObject will be instantiated if this is set to None
 
+### Default Map Prefab
+Prefab to instantiate for unnamed map objects. An empty GameObject will be instantiated if this is set to None
+
 ## PARENT STRUCTURE
 These are settings that configure the structure of how prefabs are instantiated in Unity.
 
 ### Parent Tiles to Layers
 Parent all tile objects within each layer to a layer object
 
-### Parent Layers to TiledLoader
-Parent all layer objects to a TiledLoader object. Only available if Parent Tiles to Layers is enabled
+### Parent Layers to Map
+Parent all layer objects to a map object. Only available if Parent Tiles to Layers is enabled
 
 ## [PRO] EXTENSION COMPONENTS
 These are components that are added to all instantiated tiles and layers respectively which can be used to handle additional Tiled Custom Properties, or to provide common behavior across all instances instantiated by TiledLoader.
@@ -208,6 +213,9 @@ Component to attach to all tile objects instantiated by TiledLoader (useful for 
 
 ### [PRO] Layer Component
 Component to attach to all layer objects instantiated by TiledLoader (useful for implementing HandleLayerProperties() for all layers). For more information, see "Advanced" section in Help Manual
+
+### [PRO] Map Component
+Component to attach to map object instantiated by TiledLoader (useful for implementing HandleMapProperties() for map). For more information, see "Advanced" section in Help Manual
 
 ## MISCELLANEOUS
 ### TiledLoader Path
@@ -229,14 +237,16 @@ Show warnings for tiles without matching prefab
 
 # Extending TiledLoader
 --------------------------------------------------
-TiledLoader can be easily extended if additional Custom Properties are required for either layers or tiles. This can be accomplished in your own scripts without having to modify TiledLoader's code. TiledLoader calls two different messages on instantiated objects for this purpose: 
-<i>HandleInstanceProperties()</i>, and <i>HandleLayerProperties()</i>. These methods can be implemented on scripts attached to prefabs, or on the scripts set as <b>Instance Component</b> and <b>Layer Component</b> in settings to make use of additional Custom Properties of tiles and layers respectively.
+TiledLoader can be easily extended if additional Custom Properties are required for maps, layers, or tiles. This can be accomplished in your own scripts without having to modify TiledLoader's code. TiledLoader calls three different messages on instantiated objects for this purpose: 
+<i>HandleInstanceProperties()</i>, <i>HandleLayerProperties()</i>, and <i>HandleMapProperties()</i>. These methods can be implemented on scripts attached to prefabs, or on the scripts set as <b>Instance Component</b>, <b>Layer Component</b>, and <b>Map Component</b> in settings to make use of additional Custom Properties of tiles, layers, and maps respectively.
 
-Since these methods will be called from the Unity Editor, the script component that these are implemented on must have the attritube [ExecuteInEditMode]. The properties assigned to a tile or layer in Tiled will be stored in the TiledLoaderProperties component attached to each tile or layer object. To access these, simply call <i>GetComponent<TiledLoaderProperties>()</i> on the object to get the component, and then access the properties using the component's API.
+Since these methods will be called from the Unity Editor, the script component that these are implemented on must have the attritube [ExecuteInEditMode]. The properties assigned to a tile, layer, or map in Tiled will be stored in the TiledLoaderProperties component attached to each tile, layer, or map object. To access these, simply call <i>GetComponent<TiledLoaderProperties>()</i> on the object to get the component, and then access the properties using the component's API.
 
 <b>HandleInstanceProperties</b> is called after a prefab has been instantiated, its scaled position and its rotation have been set, and it has had its parent set to its layer if <b>Parent Tiles to Layers</b> is enabled. Use <i>TiledLoader.TiledToUnityScaleFactor</i> to access the Tiled to Unity Scaling Factor used by TiledLoader to scale positions.
 
-<b>HandleLayerProperties</b> is called after a layer object has been instantiated and all tiles in the layer have been instantiated and have had the layer object set as their parent. This will only be called if <b>Parent Tiles to Layers</b> is enabled in TiledLoader's settings, since otherwise there will not be layer objects to call this function on.
+<b>HandleLayerProperties</b> is called after all layer objects have been instantiated and all tiles in all layers have been instantiated and have had their layer objects set as their parents. This will only be called if <b>Parent Tiles to Layers</b> is enabled in TiledLoader's settings, since otherwise there will not be layer objects to call this function on.
+
+<b>HandleMapProperties</b> is called after all layers and tiles have been instantiated and all other instance and layer properties have been handled. This is the last method called during TiledLoader's import process. This will only be called if <b>Parent Layers to Map</b> is enabled in TiledLoader's settings, since otherwise there will not be map object to call this function on.
 
 
 

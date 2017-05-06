@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="7">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="83">
+ <properties>
+  <property name="Name" value="Map"/>
+  <property name="Time" type="int" value="50"/>
+ </properties>
  <tileset firstgid="1" name="LayoutTileset" tilewidth="32" tileheight="32" tilecount="16" columns="4">
-  <image source="Tilesets/Spritesheet.png" width="128" height="128"/>
+  <image source="Tilesets/LayoutTileset.png" width="128" height="128"/>
   <tile id="0">
    <properties>
     <property name="East" type="bool" value="false"/>
@@ -100,7 +104,7 @@
   </tile>
  </tileset>
  <tileset firstgid="17" name="TrafficTileset" tilewidth="32" tileheight="32" tilecount="2" columns="2">
-  <image source="Tilesets/TrafficSquares.png" width="64" height="32"/>
+  <image source="Tilesets/TrafficTileset.png" width="64" height="32"/>
   <tile id="0">
    <properties>
     <property name="TrafficLevel" type="int" value="1"/>
@@ -116,20 +120,41 @@
   <image source="Tilesets/MarkerTileset.png" trans="ffffff" width="96" height="32"/>
   <tile id="0">
    <properties>
+    <property name="Name" value="TaskMid"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Name" value="TaskEnd"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Name" value="TaskStart"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="22" name="DecorationTileset" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="Tilesets/DecorationTileset.png" trans="ffffff" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="26" name="LevelElements" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="Tilesets/LevelElementTileset.png" trans="ffffff" width="32" height="32"/>
+  <tile id="0">
+   <properties>
     <property name="Name" value="Player"/>
    </properties>
   </tile>
  </tileset>
  <layer name="Layout" width="10" height="10">
   <properties>
+   <property name="Height" type="float" value="0"/>
    <property name="Name" value="LayoutLayer"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJyNkEcOACAIBLGX/z9YDm6iGyyHCTpRcE0ikhQ3KwMfFK/0WUEm7w792P+eK8bcqLTFW/ex5n5Wjnp5F+ZzTs77yllk/7dKHvsBPAMBlw==
+   eJyNkDcOADAIA0lv//9vGPAQK204AVYCmCQiSXEWGehB8Uq3CDLp7tCP9d93ZTM3Ks3ycfiPnPvtfNTLXpjPPtnvy2eR9W6VdNQTPNMBmA==
   </data>
  </layer>
- <objectgroup name="Markers"/>
- <layer name="Traffic" width="10" height="10" opacity="0.4">
+ <layer name="Traffic" width="10" height="10" opacity="0.41">
   <properties>
    <property name="Name" value="TrafficLayer"/>
   </properties>
@@ -137,9 +162,88 @@
    eJxjYCAdCAKxEJQmFQhhMYtYdTB70eVwmYfLjYIMmObhMhNdPz67qQEALBsBcA==
   </data>
  </layer>
+ <objectgroup name="Decorations">
+  <properties>
+   <property name="Height" type="float" value="1"/>
+  </properties>
+  <object id="17" gid="22" x="160" y="128" width="32" height="32"/>
+  <object id="20" gid="22" x="96" y="128" width="32" height="32"/>
+  <object id="21" gid="22" x="224" y="96" width="32" height="32"/>
+  <object id="23" gid="22" x="224" y="192" width="32" height="32"/>
+  <object id="28" gid="23" x="128" y="192" width="32" height="32"/>
+  <object id="30" gid="23" x="96" y="96" width="32" height="32"/>
+  <object id="31" gid="23" x="128" y="128" width="32" height="32"/>
+  <object id="44" gid="24" x="128" y="96" width="32" height="32"/>
+  <object id="45" gid="24" x="224" y="128" width="32" height="32"/>
+  <object id="46" gid="24" x="96" y="192" width="32" height="32"/>
+  <object id="47" gid="23" x="160" y="96" width="32" height="32"/>
+  <object id="48" gid="23" x="224" y="224" width="32" height="32"/>
+  <object id="49" gid="23" x="32" y="96" width="32" height="32"/>
+  <object id="50" gid="23" x="288" y="224" width="32" height="32"/>
+  <object id="51" gid="23" x="288" y="128" width="32" height="32"/>
+  <object id="52" gid="23" x="160" y="32" width="32" height="32"/>
+  <object id="53" gid="22" x="128" y="32" width="32" height="32"/>
+  <object id="54" gid="22" x="288" y="96" width="32" height="32"/>
+  <object id="55" gid="22" x="288" y="160" width="32" height="32"/>
+  <object id="56" gid="22" x="32" y="192" width="32" height="32"/>
+  <object id="57" gid="24" x="32" y="128" width="32" height="32"/>
+  <object id="58" gid="24" x="288" y="192" width="32" height="32"/>
+  <object id="59" gid="24" x="0" y="192" width="32" height="32"/>
+  <object id="60" gid="24" x="96" y="32" width="32" height="32"/>
+  <object id="61" gid="24" x="192" y="32" width="32" height="32"/>
+  <object id="62" gid="22" x="224" y="288" width="32" height="32"/>
+  <object id="63" gid="22" x="32" y="288" width="32" height="32"/>
+  <object id="64" gid="22" x="96" y="288" width="32" height="32"/>
+  <object id="65" gid="22" x="288" y="320" width="32" height="32"/>
+  <object id="66" gid="23" x="32" y="32" width="32" height="32"/>
+  <object id="67" gid="23" x="288" y="288" width="32" height="32"/>
+  <object id="68" gid="23" x="64" y="288" width="32" height="32"/>
+  <object id="69" gid="23" x="288" y="32" width="32" height="32"/>
+  <object id="70" gid="24" x="0" y="32" width="32" height="32"/>
+  <object id="71" gid="24" x="32" y="256" width="32" height="32"/>
+  <object id="72" gid="24" x="160" y="320" width="32" height="32"/>
+  <object id="73" gid="23" x="160" y="288" width="32" height="32"/>
+  <object id="74" gid="22" x="224" y="32" width="32" height="32"/>
+ </objectgroup>
  <layer name="Obstacles" width="10" height="10">
+  <properties>
+   <property name="Height" type="float" value="2"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBgFxABhOtkDAAlIABQ=
+   eJxjYBgFxAApOtkDAAwgABs=
+  </data>
+ </layer>
+ <layer name="Save Cuddles" width="10" height="10">
+  <properties>
+   <property name="Description" value="Save Cuddles the Cat from Carlos's evil clutches!"/>
+   <property name="Height" type="float" value="3"/>
+   <property name="Name" value="TaskLayer"/>
+   <property name="Value" type="int" value="10"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBieQGSgHUAmAAAP8AAV
+  </data>
+ </layer>
+ <layer name="Grandma's Booze" width="10" height="10">
+  <properties>
+   <property name="Description" value="Bring Grandma to liquor store, then bingo night"/>
+   <property name="Height" type="float" value="3"/>
+   <property name="Name" value="TaskLayer"/>
+   <property name="Value" type="int" value="20"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYKAfEKWjXeQAYSqZI0KBXgAoAAA9
+  </data>
+ </layer>
+ <layer name="Taco Delivery" width="10" height="10">
+  <properties>
+   <property name="Description" value="Bring taco to Phil"/>
+   <property name="Height" type="float" value="3"/>
+   <property name="Name" value="TaskLayer"/>
+   <property name="Value" type="int" value="5"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYKA+EKWBmYMZiFDRLAAhbAAq
   </data>
  </layer>
 </map>

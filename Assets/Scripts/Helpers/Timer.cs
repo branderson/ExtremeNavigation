@@ -1,12 +1,21 @@
-﻿namespace Helpers
+﻿using System;
+using UnityEngine;
+
+namespace Helpers
 {
+    [Serializable]
     public class Timer
     {
-        private int _timeRemaining = 0;
+        [SerializeField] private int _timeRemaining = 0;
 
         public Timer(int time)
         {
             _timeRemaining = time;
+        }
+
+        public int Time
+        {
+            get { return _timeRemaining; }
         }
 
         /// <summary>

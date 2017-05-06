@@ -7,6 +7,7 @@ namespace Controllers
         [SerializeField] private int _pixelsPerUnit = 32;
         [SerializeField] private int _defaultScale = 1;
         [SerializeField] private int _maxScale = 5;
+        [SerializeField] private int _minScale = 1;
         private int _currentScale = 1;
         private Camera _camera;
 
@@ -49,9 +50,9 @@ namespace Controllers
         public int Resize(int ppuScale)
         {
             // Ensure scale is within bounds
-            if (ppuScale <= 0)
+            if (ppuScale < _minScale)
             {
-                return 1;
+                return _minScale;
             }
             if (ppuScale > _maxScale)
             {
@@ -59,7 +60,7 @@ namespace Controllers
             }
             // Set orthographic size to maintain pixel - physical pixel integer ratio
             _currentScale = ppuScale;
-            float verticalResolution = Display.main.renderingHeight;
+            float verticalResolution = _camera.pixelHeight;
             float orthoSize = (verticalResolution / (2 * ppuScale * _pixelsPerUnit));
             _camera.orthographicSize = orthoSize;
             return ppuScale;

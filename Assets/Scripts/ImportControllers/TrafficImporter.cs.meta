@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f4a87c579ed84f24ebfa9075252f4037
-timeCreated: 1493440718
+timeCreated: 1494017151
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -8,6 +8,10 @@ MonoImporter:
   - _yellowRoadTileset: {fileID: 2800000, guid: c42622036022f0e419700af71a372a93,
       type: 3}
   - _redRoadTileset: {fileID: 2800000, guid: a83d579e634360649a84658a47decaa5, type: 3}
+  - _yellowMinimapTileset: {fileID: 2800000, guid: c42622036022f0e419700af71a372a93,
+      type: 3}
+  - _redMinimapTileset: {fileID: 2800000, guid: a83d579e634360649a84658a47decaa5,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -23,21 +23,21 @@ namespace Controllers
             }
         }
 
-        public Move MoveTo(RoadTileController tile)
-        {
-            if (!CanMoveTo(tile)) return Move.Stay;
-            Move move = CurrentPosition.GetMove(tile);
-            if (move == Move.Stay) return Move.Stay;
-            CurrentPosition.UnsetSurroundingAvailable();
-            CurrentPosition = tile;
-            CurrentPosition.MovedTo();
+//        public Move MoveTo(RoadTileController tile)
+//        {
+//            if (!CanMoveTo(tile)) return Move.Stay;
+//            Move move = CurrentPosition.GetMove(tile);
+//            if (move == Move.Stay) return Move.Stay;
+//            CurrentPosition.UnsetSurroundingAvailable();
+//            CurrentPosition = tile;
+//            CurrentPosition.MovedTo();
 //            transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, transform.position.z);
-            return move;
-        }
+//            return move;
+//        }
 
-        public bool CanMoveTo(RoadTileController tile)
-        {
-            return CurrentPosition.GetConnected(tile);
-        }
+//        public bool CanMoveTo(RoadTileController tile)
+//        {
+//            return CurrentPosition.GetConnected(tile);
+//        }
     }
 }

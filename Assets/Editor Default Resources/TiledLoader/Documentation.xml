@@ -251,7 +251,7 @@ Since these methods will be called from the Unity Editor, the script component t
 
 &lt;b&gt;HandleInstanceProperties&lt;/b&gt; is called after a prefab has been instantiated, its scaled position and its rotation have been set, and it has had its parent set to its layer if &lt;b&gt;Parent Tiles to Layers&lt;/b&gt; is enabled. Use &lt;i&gt;TiledLoader.TiledToUnityScaleFactor&lt;/i&gt; to access the Tiled to Unity Scaling Factor used by TiledLoader to scale positions.
 
-&lt;b&gt;HandleLayerProperties&lt;/b&gt; is called after a layer object has been instantiated and all tiles in the layer have been instantiated and have had the layer object set as their parent. This will only be called if &lt;b&gt;Parent Tiles to Layers&lt;/b&gt; is enabled in TiledLoader's settings, since otherwise there will not be layer objects to call this function on.
+&lt;b&gt;HandleLayerProperties&lt;/b&gt; is called after all layer objects have been instantiated and all tiles in all layers have been instantiated and have had their layer objects set as their parents. This will only be called if &lt;b&gt;Parent Tiles to Layers&lt;/b&gt; is enabled in TiledLoader's settings, since otherwise there will not be layer objects to call this function on.
 
 &lt;b&gt;HandleMapProperties&lt;/b&gt; is called after all layers and tiles have been instantiated and all other instance and layer properties have been handled. This is the last method called during TiledLoader's import process. This will only be called if &lt;b&gt;Parent Layers to Map&lt;/b&gt; is enabled in TiledLoader's settings, since otherwise there will not be map object to call this function on.</p>
 </dropdown>

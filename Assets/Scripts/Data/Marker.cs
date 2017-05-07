@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditorInternal;
+using UnityEngine;
 
 namespace Data
 {
@@ -44,19 +45,15 @@ namespace Data
         /// </summary>
         public void RouteEnter()
         {
-            Debug.Log("RouteEnter " + Task.Name);
             // Make sure this marker is active
             if (!Active) return;
-            Debug.Log("Active " + Task.Name);
             // Make sure this marker is next
             if (!Task.TriggerMarker(this)) return;
-            Debug.Log("Triggered " + Task.Name);
             // If this is the end, we've completed the task
             if (Next == null) Task.TaskComplete();
             // Otherwise, move down the chain
-            Task.Head = Next;
-            // Deactivate this marker
-            Active = false;
+            else Task.Head = Next;
+            // Trigger this marker
             gameObject.SetActive(false);
         }
     }

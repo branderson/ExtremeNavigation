@@ -60,9 +60,10 @@ namespace UI
         public void ActivateTask()
         {
             if (_selected == null) return;
-            _levelController.ActivateTask(_selected);
             // Activate selected task
             ActivateTask(_selected);
+            // Needs to come after UI add in case task immediately completed
+            _levelController.ActivateTask(_selected);
             _selected = null;
         }
 
@@ -101,6 +102,20 @@ namespace UI
         {
             _activeTasks.Remove(task);
             RefreshActive();
+        }
+
+        public void AddTask(Task task, bool active)
+        {
+            if (active)
+            {
+                _activeTasks.Add(task);
+                RefreshActive();
+            }
+            else
+            {
+                _availableTasks.Add(task);
+                RefreshAvailable();
+            }
         }
 
         private void RefreshAvailable()

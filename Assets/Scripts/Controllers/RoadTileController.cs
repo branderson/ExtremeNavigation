@@ -1,5 +1,6 @@
 ﻿using Data;
 using UnityEngine;
+using Utility;
 
 namespace Controllers
 {
@@ -8,9 +9,9 @@ namespace Controllers
         [SerializeField] private GameObject _availableSprite;
         [SerializeField] private GameObject _pathSprite;
         private RoadTile _roadTile;
-        private LevelController _level;
+//        private LevelController _level;
 
-        private bool _onPath = false;
+        private int _onPath = 0;
 
         public int Time
         {
@@ -20,7 +21,7 @@ namespace Controllers
         private void Awake()
         {
             _roadTile = GetComponent<RoadTile>();
-            _level = FindObjectOfType<LevelController>();
+//            _level = FindObjectOfType<LevelController>();
         }
 
         public bool GetConnected(RoadTileController roadTile)
@@ -28,23 +29,46 @@ namespace Controllers
             return _roadTile.GetConnected(roadTile._roadTile);
         }
 
-        public void MovedTo()
+        public void MovedTo(Move move)
         {
-            // TODO: Need to be able to undo, so markers need to be given back
-            _onPath = true;
+            _onPath += 1;
+            SetHead(move);
+            TriggerMarkers();
+        }
+
+        public void SetHead(Move move)
+        {
             SetPathSprite();
+            // Set available sprite for tiles we can move to
+            // TODO: This needs to be changed
+            RoadTile[] edges = (RoadTile[])_roadTile.GetEdges.Clone();
+            // TODO: Use directions instead to clean this up
+            if (move == Move.Up) edges[(int) RoadTile.Direction.South] = null;
+            if (move == Move.Down) edges[(int) RoadTile.Direction.North] = null;
+            if (move == Move.Right) edges[(int) RoadTile.Direction.West] = null;
+            if (move == Move.Left) edges[(int) RoadTile.Direction.East] = null;
+            foreach (RoadTile roadTile in edges)
+            {
+                if (roadTile == null) continue;
+                roadTile.GetComponent<RoadTileController>().SetAvailableSprite();
+            }
+        }
+
+        public void Pop()
+        {
+            _onPath -= 1;
+            SetNormalSprite();
+            UnsetSurroundingAvailable();
+        }
+
+        public void TriggerMarkers()
+        {
+            if (_onPath == 0) return;
             // Trigger markers
             foreach (Marker marker in _roadTile.AdjacentMarkers)
             {
                 if (marker == null) continue;
                 marker.RouteEnter();
-            }
-            // Set available sprite for tiles we can move to
-            foreach (RoadTile roadTile in _roadTile.GetEdges)
-            {
-                // TODO: Don't want to let us move backward
-                if (roadTile == null) continue;
-                roadTile.GetComponent<RoadTileController>().SetAvailableSprite();
             }
         }
 
@@ -93,7 +117,7 @@ namespace Controllers
 
         private void UnsetAvailableSprite()
         {
-            _pathSprite.SetActive(_onPath);
+            _pathSprite.SetActive(_onPath != 0);
             _availableSprite.SetActive(false);
         }
     }

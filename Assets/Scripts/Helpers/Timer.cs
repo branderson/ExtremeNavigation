@@ -7,10 +7,12 @@ namespace Helpers
     public class Timer
     {
         [SerializeField] private int _timeRemaining = 0;
+        [SerializeField] private int _startingTime = 0;
 
         public Timer(int time)
         {
             _timeRemaining = time;
+            _startingTime = time;
         }
 
         public int Time
@@ -32,6 +34,14 @@ namespace Helpers
                 _timeRemaining = 0;
                 TimeElapsed();
             }
+        }
+
+        /// <summary>
+        /// Reset remaining time to initial value
+        /// </summary>
+        public void ResetTime()
+        {
+            _timeRemaining = _startingTime;
         }
 
         private void TimeElapsed()

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if UNITY_EDITOR
+using System.Linq;
 using Data;
 using TiledLoader;
 using UnityEditor;
@@ -77,3 +78,4 @@ namespace ImportControllers
         }
     }
 }
+#endif

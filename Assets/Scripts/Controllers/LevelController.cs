@@ -3,6 +3,7 @@ using Data;
 using Helpers;
 using UI;
 using UnityEngine;
+using Utility;
 
 namespace Controllers
 {
@@ -14,13 +15,14 @@ namespace Controllers
 
         // Player state
         private PlayerController _player;
-        private List<RoadTileController> _path;
+        private RoadTileController _startingPosition;
+        private LinkedList<RoadTileController> _path;
         // TODO: Might not need this route
         private Route _route;
         private int _money = 0;
 
         private Camera _gameCamera;
-        private RoadTileController[] _roadTiles;
+//        private RoadTileController[] _roadTiles;
         private TaskListController _taskList;
         private TimeUIController _timeUI;
         private MoneyUIController _moneyUI;
@@ -43,20 +45,23 @@ namespace Controllers
             _player = FindObjectOfType<PlayerController>();
             _route = new Route();
             _gameCamera = FindObjectOfType<GameCameraController>().GetComponent<Camera>();
-            _roadTiles = FindObjectsOfType<RoadTileController>();
+//            _roadTiles = FindObjectsOfType<RoadTileController>();
             _timeUI = FindObjectOfType<TimeUIController>();
             _moneyUI = FindObjectOfType<MoneyUIController>();
         }
 
         private void Start()
         {
-            _path = new List<RoadTileController> {_player.CurrentPosition };
+//            _path = new LinkedList<RoadTileController> {_player.CurrentPosition };
+            _path = new LinkedList<RoadTileController>();
+            _startingPosition = _player.CurrentPosition;
+            _path.AddFirst(_startingPosition);
 
             _taskList = FindObjectOfType<TaskListController>();
             _taskList.AddTasks(_tasks);
 
             // Initialize starting position
-            _player.CurrentPosition.MovedTo();
+            _startingPosition.MovedTo(Move.Stay);
 
             // Initialize UI
             _timeUI.SetTime(_timer);
@@ -68,33 +73,114 @@ namespace Controllers
             // Allow path drawing while left mouse button down
             if (Input.GetMouseButton(0))
             {
-                // Find RoadTile under mouse
-                Vector3 mousePosition = Input.mousePosition;
-                // Check for all colliding objects
-                Collider2D[] cols = Physics2D.OverlapPointAll(_gameCamera.ScreenToWorldPoint(mousePosition));
-                foreach (Collider2D col in cols)
+                DrawPath();
+            }
+
+            // Allow undo
+            if (Input.GetMouseButtonDown(1))
+            {
+                PopPath();
+            }
+        }
+
+        private void DrawPath()
+        {
+            // Find RoadTile under mouse
+            RoadTileController roadTile = null;
+            Vector3 mousePosition = Input.mousePosition;
+            // Check for all colliding objects
+            Collider2D[] cols = Physics2D.OverlapPointAll(_gameCamera.ScreenToWorldPoint(mousePosition));
+            foreach (Collider2D col in cols)
+            {
+                // Check each colliding object to find RoadTile
+                roadTile = col.GetComponent<RoadTileController>();
+            }
+
+            // Attempt to move to tile
+            if (roadTile == null) return;
+
+            // Check if we have enough time
+            if (_timer.Time < roadTile.Time) return;
+
+            RoadTileController current = _path.Last.Value;
+            // Make sure not moving to previous position
+            if (_path.Last.Previous != null && roadTile == _path.Last.Previous.Value) return;
+            // Check if we can move here
+            if (!current.GetConnected(roadTile)) return;
+
+            // Get move direction
+            Move move = current.GetMove(roadTile);
+            if (move == Move.Stay) return;
+
+            // Update drawing UI
+            current.UnsetSurroundingAvailable();
+            roadTile.MovedTo(move);
+
+            // Add to path
+            _path.AddLast(roadTile);
+
+            // Cost time
+            _timer.SubtractTime(roadTile.Time);
+            _timeUI.SetTime(_timer);
+
+            // TODO: Remove route stuff?
+            // Add to route
+//            _route.AddMove(move);
+
+            if (_timer.Time <= 0) TimeElapsed();
+        }
+
+        private void PopPath()
+        {
+            // Make sure we're not at the start
+            if (_path.Count == 1) return;
+
+            // Reset money for recalcuation
+            _money = 0;
+
+            _path.Last.Value.Pop();
+            _path.RemoveLast();
+
+            // Get direction between last two
+            Move move;
+            RoadTileController current = _path.Last.Value;
+            LinkedListNode<RoadTileController> prev = _path.Last.Previous;
+            if (prev == null) move = Move.Stay;
+            else move = prev.Value.GetMove(current);
+
+            // Set new head as path head
+            _path.Last.Value.SetHead(move);
+            EventManager.Instance.TriggerEvent("PopTile");
+
+            RecalcuateTime();
+            _moneyUI.SetMoney(_money);
+        }
+
+        public void RerunPath()
+        {
+            // Iterate through path
+            for (LinkedListNode<RoadTileController> node = _path.First; node != null; node = node.Next)
+            {
+                RoadTileController tile = node.Value;
+                tile.TriggerMarkers();
+            }
+        }
+
+        private void RecalcuateTime()
+        {
+            _timer.ResetTime();
+            // Iterate through path
+            for (LinkedListNode<RoadTileController> node = _path.First; node != null; node = node.Next)
+            {
+                RoadTileController tile = node.Value;
+                // Make sure it's not the first tile
+                if (tile != _startingPosition)
                 {
-                    // Check each colliding object to find RoadTile
-                    RoadTileController roadTile = col.GetComponent<RoadTileController>();
-                    if (roadTile == null) continue;
-
-                    // Check if we can move here and move if possible
-                    if (_timer.Time >= roadTile.Time)
-                    {
-                        Move move = _player.MoveTo(roadTile);
-                        if (move != Move.Stay)
-                        {
-                            // Cost time
-                            _timer.SubtractTime(roadTile.Time);
-                            _timeUI.SetTime(_timer);
-
-                            _route.AddMove(move);
-
-                            if (_timer.Time <= 0) TimeElapsed();
-                        }
-                    }
+                    // Subtract time for each tile
+                    _timer.SubtractTime(tile.Time);
                 }
             }
+            _timeUI.SetTime(_timer);
         }
 
         private void TimeElapsed()
@@ -128,7 +214,6 @@ namespace Controllers
 
         public void ActivateTask(Task task)
         {
-            // TODO: Need to recalculate completion on task activation/deactivation
             if (task == null) return;
             task.Enable();
         }
@@ -152,8 +237,17 @@ namespace Controllers
             _moneyUI.SetMoney(_money);
 
             // Disable task
-            task.Disable();
             _taskList.CompleteTask(task);
+        }
+
+        public void UncompleteTask(Task task, bool active)
+        {
+            // Remove money
+            _money -= task.Value;
+            _moneyUI.SetMoney(_money);
+
+            // Move back to list
+            _taskList.AddTask(task, active);
         }
     }
 }

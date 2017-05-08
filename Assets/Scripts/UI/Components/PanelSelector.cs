@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Components
@@ -9,6 +10,7 @@ namespace UI.Components
         [SerializeField] private Sprite _unselectedBackground;
         [SerializeField] private Sprite _hoveredBackground;
         [SerializeField] public MenuPanelController Panel;
+        [SerializeField] public UnityEvent OpenPanelFunction;
         public PanelGroup PanelGroup;
         private bool _selected = false;
 
@@ -46,6 +48,7 @@ namespace UI.Components
             if (_background == null) _background = GetComponent<Image>();
             _background.sprite = _selectedBackground;
             _selected = true;
+            OpenPanelFunction.Invoke();
         }
 
         /// <summary>

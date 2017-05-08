@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Controllers;
+using UnityEngine;
 
 namespace UI
 {
@@ -27,6 +28,11 @@ namespace UI
         {
             if (_open) ClosePanel();
             else OpenPanel();
+        }
+
+        public void RunGame()
+        {
+            FindObjectOfType<LevelController>().RunPath();
         }
 
         private void OpenPanel()

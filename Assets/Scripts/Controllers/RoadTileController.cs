@@ -29,14 +29,14 @@ namespace Controllers
             return _roadTile.GetConnected(roadTile._roadTile);
         }
 
-        public void MovedTo(Move move)
+        public void MovedTo(Move move, int timeRemaining)
         {
             _onPath += 1;
-            SetHead(move);
+            SetHead(move, timeRemaining);
             TriggerMarkers();
         }
 
-        public void SetHead(Move move)
+        public void SetHead(Move move, int timeRemaining)
         {
             SetPathSprite();
             // Set available sprite for tiles we can move to
@@ -49,7 +49,7 @@ namespace Controllers
             if (move == Move.Left) edges[(int) RoadTile.Direction.East] = null;
             foreach (RoadTile roadTile in edges)
             {
-                if (roadTile == null) continue;
+                if (roadTile == null || roadTile.Time > timeRemaining) continue;
                 roadTile.GetComponent<RoadTileController>().SetAvailableSprite();
             }
         }

@@ -113,6 +113,11 @@ MonoBehaviour:
     type: 3}
   _hoveredBackground: {fileID: 21300000, guid: b64e001fe4f517c48a0e74b60bde577a, type: 3}
   Panel: {fileID: 0}
+  OpenPanelFunction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   PanelGroup: {fileID: 0}
 --- !u!114 &11454908
 MonoBehaviour:

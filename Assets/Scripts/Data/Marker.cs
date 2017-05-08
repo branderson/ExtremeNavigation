@@ -1,4 +1,5 @@
-﻿using UnityEditorInternal;
+﻿using System.Linq;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Data
@@ -12,13 +13,28 @@ namespace Data
         [SerializeField] public Marker Next = null;
         [SerializeField] public Task Task = null;
 
+        private SpriteRenderer _sprite;
+        private SpriteRenderer _minimapSprite;
+
+        private void Awake()
+        {
+            // Get this object's SpriteRenderer
+            _sprite = GetComponent<SpriteRenderer>();
+            // Get child SpriteRenderer
+            _minimapSprite = GetComponentsInChildren<SpriteRenderer>().FirstOrDefault(item => item != _sprite);
+            // Disable sprites
+            DisableSprite();
+            DisableMinimapRecursive();
+        }
+
         /// <summary>
         /// Enable the marker list from here on
         /// </summary>
         public void Enable()
         {
             Active = true;
-            gameObject.SetActive(true);
+            EnableSprite();
+            EnableMinimapRecursive();
             if (Next != null)
             {
                 // Enable list
@@ -32,12 +48,47 @@ namespace Data
         public void Disable()
         {
             Active = false;
-            gameObject.SetActive(false);
+            DisableSprite();
+            DisableMinimapRecursive();
             if (Next != null)
             {
                 // Disable list
                 Next.Disable();
             }
+        }
+
+        public void EnableSprite()
+        {
+            _sprite.enabled = true;
+        }
+
+        public void DisableSprite()
+        {
+            _sprite.enabled = false;
+        }
+
+        public void EnableSpriteRecursive()
+        {
+            _sprite.enabled = true;
+            if (Next != null) Next.EnableSpriteRecursive();
+        }
+
+        public void DisableSpriteRecursive()
+        {
+            _sprite.enabled = false;
+            if (Next != null) Next.DisableSpriteRecursive();
+        }
+
+        public void EnableMinimapRecursive()
+        {
+            _minimapSprite.enabled = true;
+            if (Next != null) Next.EnableMinimapRecursive();
+        }
+
+        public void DisableMinimapRecursive()
+        {
+            _minimapSprite.enabled = false;
+            if (Next != null) Next.DisableMinimapRecursive();
         }
 
         /// <summary>
@@ -54,7 +105,7 @@ namespace Data
             // Otherwise, move down the chain
             else Task.Head = Next;
             // Trigger this marker
-            gameObject.SetActive(false);
+            DisableSprite();
         }
     }
 }

@@ -58,6 +58,26 @@ namespace Data
             _complete = false;
         }
 
+        public void EnableSprite()
+        {
+            _start.EnableSpriteRecursive();
+        }
+
+        public void DisableSpriteIfDisabled()
+        {
+            if (!_enabled) _start.DisableSpriteRecursive();
+        }
+
+        public void EnableMinimap()
+        {
+            _start.EnableMinimapRecursive();
+        }
+
+        public void DisableMinimapIfDisabled()
+        {
+            if (!_enabled) _start.DisableMinimapRecursive();
+        }
+
         public void Recalculate()
         {
             // Revert to starting state, maintaining enabled state

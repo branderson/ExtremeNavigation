@@ -23,6 +23,10 @@ namespace Controllers
             }
         }
 
+        public void Run()
+        {
+        }
+
 //        public Move MoveTo(RoadTileController tile)
 //        {
 //            if (!CanMoveTo(tile)) return Move.Stay;

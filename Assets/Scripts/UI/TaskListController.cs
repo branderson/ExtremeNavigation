@@ -30,6 +30,8 @@ namespace UI
             RefreshActive();
         }
 
+        // TODO: Deselect on tab switch
+
         public void SelectTask(ISelectable taskButton)
         {
             // Get selected task
@@ -41,6 +43,10 @@ namespace UI
                 // Deselect task
                 taskButton.Deselect();
                 _selected = null;
+
+                // Disable minimap sprite
+                task.DisableMinimapIfDisabled();
+                task.DisableSpriteIfDisabled();
             }
             else
             {
@@ -48,13 +54,34 @@ namespace UI
                 ISelectable current = _availableList.GetSelected().FirstOrDefault() ?? _activeList.GetSelected().FirstOrDefault();
                 if (current != null)
                 {
+//                    string currentName = taskButton.GetText();
+//                    Task currentTask = _availableTasks.FirstOrDefault(item => item.Name == currentName) ?? _activeTasks.FirstOrDefault(item => item.Name == currentName);
+                    if (_selected != null) _selected.DisableMinimapIfDisabled();
+                    if (_selected != null) _selected.DisableSpriteIfDisabled();
                     current.Deselect();
                 }
 
                 // Select task
                 taskButton.Select();
                 _selected = task;
+
+                // Enable minimap sprite
+                task.EnableSprite();
+                task.EnableMinimap();
             }
+        }
+
+        public void DeselectTask()
+        {
+            // Get current selection
+            ISelectable current = _availableList.GetSelected().FirstOrDefault() ?? _activeList.GetSelected().FirstOrDefault();
+            if (current != null)
+            {
+                if (_selected != null) _selected.DisableMinimapIfDisabled();
+                if (_selected != null) _selected.DisableSpriteIfDisabled();
+                current.Deselect();
+            }
+            _selected = null;
         }
 
         public void ActivateTask()

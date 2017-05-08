@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Components
@@ -12,6 +13,7 @@ namespace UI.Components
     {
         [SerializeField] private GameObject _panelSelectorPrefab;
         [SerializeField] private GameObject _titlePrefab;
+        [SerializeField] private UnityEvent _tabSwitchFunction;
          
         public override void Awake()
         {
@@ -34,6 +36,7 @@ namespace UI.Components
                 button.transform.SetParent(_buttonGroup, false);
                 _buttons.Add(button);
                 button.Initialize(panelController);
+                button.OpenPanelFunction = _tabSwitchFunction;
                 button.Panel = panelController;
                 button.PanelGroup = this;
             }

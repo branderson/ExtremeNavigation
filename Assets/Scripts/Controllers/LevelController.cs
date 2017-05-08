@@ -9,16 +9,23 @@ namespace Controllers
 {
     public class LevelController : MonoBehaviour
     {
+        private enum GameState
+        {
+            Routing,
+            Running
+        }
+
         [SerializeField] private Timer _timer;
         [SerializeField] private Rect _bounds;
         [SerializeField] private List<Task> _tasks;
 
         // Player state
+        private GameState _state = GameState.Routing;
         private PlayerController _player;
         private RoadTileController _startingPosition;
         private LinkedList<RoadTileController> _path;
         // TODO: Might not need this route
-        private Route _route;
+//        private Route _route;
         private int _money = 0;
 
         private Camera _gameCamera;
@@ -43,7 +50,7 @@ namespace Controllers
         private void Awake()
         {
             _player = FindObjectOfType<PlayerController>();
-            _route = new Route();
+//            _route = new Route();
             _gameCamera = FindObjectOfType<GameCameraController>().GetComponent<Camera>();
 //            _roadTiles = FindObjectsOfType<RoadTileController>();
             _timeUI = FindObjectOfType<TimeUIController>();
@@ -60,26 +67,33 @@ namespace Controllers
             _taskList = FindObjectOfType<TaskListController>();
             _taskList.AddTasks(_tasks);
 
-            // Initialize starting position
-            _startingPosition.MovedTo(Move.Stay);
-
             // Initialize UI
             _timeUI.SetTime(_timer);
             _moneyUI.SetMoney(_money);
+
+            // Initialize starting position
+            _startingPosition.MovedTo(Move.Stay, _timer.Time);
         }
 
         private void Update()
         {
-            // Allow path drawing while left mouse button down
-            if (Input.GetMouseButton(0))
+            switch (_state)
             {
-                DrawPath();
-            }
+                case GameState.Routing:
+                    // Allow path drawing while left mouse button down
+                    if (Input.GetMouseButton(0))
+                    {
+                        DrawPath();
+                    }
 
-            // Allow undo
-            if (Input.GetMouseButtonDown(1))
-            {
-                PopPath();
+                    // Allow undo
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        PopPath();
+                    }
+                    break;
+                case GameState.Running:
+                    break;
             }
         }
 
@@ -112,16 +126,16 @@ namespace Controllers
             Move move = current.GetMove(roadTile);
             if (move == Move.Stay) return;
 
-            // Update drawing UI
-            current.UnsetSurroundingAvailable();
-            roadTile.MovedTo(move);
-
-            // Add to path
-            _path.AddLast(roadTile);
-
             // Cost time
             _timer.SubtractTime(roadTile.Time);
             _timeUI.SetTime(_timer);
+
+            // Update drawing UI
+            current.UnsetSurroundingAvailable();
+            roadTile.MovedTo(move, _timer.Time);
+
+            // Add to path
+            _path.AddLast(roadTile);
 
             // TODO: Remove route stuff?
             // Add to route
@@ -148,12 +162,13 @@ namespace Controllers
             if (prev == null) move = Move.Stay;
             else move = prev.Value.GetMove(current);
 
-            // Set new head as path head
-            _path.Last.Value.SetHead(move);
-            EventManager.Instance.TriggerEvent("PopTile");
-
+            // Update UI
             RecalcuateTime();
             _moneyUI.SetMoney(_money);
+
+            // Set new head as path head
+            _path.Last.Value.SetHead(move, _timer.Time);
+            EventManager.Instance.TriggerEvent("PopTile");
         }
 
         public void RerunPath()
@@ -164,6 +179,12 @@ namespace Controllers
                 RoadTileController tile = node.Value;
                 tile.TriggerMarkers();
             }
+        }
+
+        public void RunPath()
+        {
+            _state = GameState.Running;
+            _player.Run();
         }
 
         private void RecalcuateTime()

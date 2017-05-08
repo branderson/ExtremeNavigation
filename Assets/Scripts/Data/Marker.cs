@@ -59,34 +59,40 @@ namespace Data
 
         public void EnableSprite()
         {
+            if (_sprite == null) return;
             _sprite.enabled = true;
         }
 
         public void DisableSprite()
         {
+            if (_sprite == null) return;
             _sprite.enabled = false;
         }
 
         public void EnableSpriteRecursive()
         {
+            if (_sprite == null) return;
             _sprite.enabled = true;
             if (Next != null) Next.EnableSpriteRecursive();
         }
 
         public void DisableSpriteRecursive()
         {
+            if (_sprite == null) return;
             _sprite.enabled = false;
             if (Next != null) Next.DisableSpriteRecursive();
         }
 
         public void EnableMinimapRecursive()
         {
+            if (_minimapSprite == null) return;
             _minimapSprite.enabled = true;
             if (Next != null) Next.EnableMinimapRecursive();
         }
 
         public void DisableMinimapRecursive()
         {
+            if (_minimapSprite == null) return;
             _minimapSprite.enabled = false;
             if (Next != null) Next.DisableMinimapRecursive();
         }

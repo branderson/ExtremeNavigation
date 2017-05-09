@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4205485262970484}
   - component: {fileID: 212777587431282578}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: AvailableSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

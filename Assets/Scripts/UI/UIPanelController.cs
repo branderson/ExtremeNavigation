@@ -32,7 +32,7 @@ namespace UI
 
         public void RunGame()
         {
-            FindObjectOfType<LevelController>().Restart();
+            FindObjectOfType<LevelController>().RunPath();
         }
 
         private void OpenPanel()

@@ -93,6 +93,11 @@ namespace Controllers
                     {
                         PopPath();
                     }
+
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        SceneManager.LoadScene("MainMenu");
+                    }
                     break;
                 case GameState.Running:
                     break;
@@ -138,6 +143,7 @@ namespace Controllers
 
             // Add to path
             _path.AddLast(roadTile);
+            _player.MoveTo(roadTile, move);
 
             // TODO: Remove route stuff?
             // Add to route
@@ -168,6 +174,8 @@ namespace Controllers
             RecalcuateTime();
             _moneyUI.SetMoney(_money);
 
+            if (prev != null) _player.MoveTo(prev.Value, move);
+
             // Set new head as path head
             _path.Last.Value.SetHead(move, _timer.Time);
             EventManager.Instance.TriggerEvent("PopTile");
@@ -186,7 +194,12 @@ namespace Controllers
         public void RunPath()
         {
             _state = GameState.Running;
-            _player.Run();
+            _player.Run(_path);
+        }
+
+        public void EndLevel()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void Restart()

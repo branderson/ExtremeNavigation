@@ -9,17 +9,24 @@ namespace Controllers
 
         private void Awake()
         {
-            _levelController = GameObject.FindObjectOfType<LevelController>();
-            _camera = GetComponent<Camera>();
         }
 
         private void Start()
         {
+            SetSize();
+        }
+
+        public void SetSize()
+        {
+            _levelController = GameObject.FindObjectOfType<LevelController>();
+            _camera = GetComponent<Camera>();
+
             // Set position and orthographic size to contain entire map
             Rect levelBounds = _levelController.Bounds;
             transform.position = new Vector3(levelBounds.center.x, levelBounds.center.y, transform.position.z);
 
             _camera.orthographicSize = levelBounds.width / 2;
+            _camera.Render();
         }
     }
 }

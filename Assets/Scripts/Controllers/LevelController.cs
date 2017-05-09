@@ -51,7 +51,6 @@ namespace Controllers
         private void Awake()
         {
             _player = FindObjectOfType<PlayerController>();
-            _startingPosition = _player.CurrentPosition;
 //            _route = new Route();
             _gameCamera = FindObjectOfType<GameCameraController>().GetComponent<Camera>();
             _timeUI = FindObjectOfType<TimeUIController>();
@@ -74,6 +73,7 @@ namespace Controllers
             _moneyUI.SetMoney(_money);
 
             // Initialize starting position
+            _startingPosition = _player.CurrentPosition;
             _startingPosition.MovedTo(Move.Stay, _timer.Time);
         }
 

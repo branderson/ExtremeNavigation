@@ -39,7 +39,7 @@ namespace ImportControllers
             foreach (Marker marker in transform.GetComponentsInChildren<Marker>())
             {
                 marker.Task = task;
-                if (marker.Start)
+                if (marker.First)
                 {
                     start = marker;
                 }

@@ -30,13 +30,11 @@ namespace UI
             RefreshActive();
         }
 
-        // TODO: Deselect on tab switch
-
         public void SelectTask(ISelectable taskButton)
         {
             // Get selected task
             string taskName = taskButton.GetText();
-            Task task = _availableTasks.FirstOrDefault(item => item.Name == taskName) ?? _activeTasks.FirstOrDefault(item => item.Name == taskName);
+            Task task = _availableTasks.FirstOrDefault(item => taskName.StartsWith(item.Name)) ?? _activeTasks.FirstOrDefault(item => taskName.StartsWith(item.Name));
             if (task == null) return;
             if (task == _selected)
             {
@@ -45,29 +43,19 @@ namespace UI
                 _selected = null;
 
                 // Disable minimap sprite
-                task.DisableMinimapIfDisabled();
-                task.DisableSpriteIfDisabled();
+                task.Deselect();
             }
             else
             {
-                // Get current selection
-                ISelectable current = _availableList.GetSelected().FirstOrDefault() ?? _activeList.GetSelected().FirstOrDefault();
-                if (current != null)
-                {
-//                    string currentName = taskButton.GetText();
-//                    Task currentTask = _availableTasks.FirstOrDefault(item => item.Name == currentName) ?? _activeTasks.FirstOrDefault(item => item.Name == currentName);
-                    if (_selected != null) _selected.DisableMinimapIfDisabled();
-                    if (_selected != null) _selected.DisableSpriteIfDisabled();
-                    current.Deselect();
-                }
+                // Deselect current selection
+                DeselectTask();
 
                 // Select task
                 taskButton.Select();
                 _selected = task;
 
                 // Enable minimap sprite
-                task.EnableSprite();
-                task.EnableMinimap();
+                task.Select();
             }
         }
 
@@ -77,8 +65,7 @@ namespace UI
             ISelectable current = _availableList.GetSelected().FirstOrDefault() ?? _activeList.GetSelected().FirstOrDefault();
             if (current != null)
             {
-                if (_selected != null) _selected.DisableMinimapIfDisabled();
-                if (_selected != null) _selected.DisableSpriteIfDisabled();
+                if (_selected != null) _selected.Deselect();
                 current.Deselect();
             }
             _selected = null;
@@ -150,7 +137,7 @@ namespace UI
             // Clear removed tasks
             _availableTasks.Remove(null);
             // Refresh UI
-            _availableList.Populate(_availableTasks.Select(item => item.Name).ToList());
+            _availableList.Populate(_availableTasks.Select(item => TaskToString(item)).ToList());
         }
 
         private void RefreshActive()
@@ -158,7 +145,20 @@ namespace UI
             // Clear removed tasks
             _activeTasks.Remove(null);
             // Refresh UI
-            _activeList.Populate(_activeTasks.Select(item => item.Name).ToList());
+            _activeList.Populate(_activeTasks.Select(item => TaskToString(item)).ToList());
+        }
+
+        private string TaskToString(Task task)
+        {
+            string red = "#EA3F3F";
+            string yellow = "#FFDE2A";
+            string green = "#A8D139";
+            int count = task.Count;
+            string val = task.Name + " $" + task.Value;
+            if (count > 1) val += " <color=" + green + ">@</color>";
+            if (count > 2) val += " <color=" + yellow + ">@</color>";
+            val += " <color=" + red + ">@</color>";
+            return val;
         }
     }
 }

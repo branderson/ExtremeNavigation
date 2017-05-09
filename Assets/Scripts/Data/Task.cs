@@ -9,6 +9,7 @@ namespace Data
         [SerializeField] public string Name;
         [SerializeField] public string Description;
         [SerializeField] public int Value;
+        [SerializeField] public int Count;
         [SerializeField] private Marker _head;
         [SerializeField] private LevelController _levelController;
 
@@ -33,7 +34,17 @@ namespace Data
         {
             EventManager.Instance.StartListening("PopTile", Recalculate);
             _start = _head;
+        }
+
+        private void Start()
+        {
             Disable();
+            Marker node = _start;
+            while (node != null)
+            {
+                Count++;
+                node = node.Next;
+            }
         }
 
 
@@ -42,7 +53,7 @@ namespace Data
         /// </summary>
         public void Enable()
         {
-            _head.Enable();
+            _head.Activate();
             _enabled = true;
             _levelController.RerunPath();
         }
@@ -52,36 +63,51 @@ namespace Data
         /// </summary>
         public void Disable()
         {
-            _start.Disable();
+            _start.Deactivate();
             _head = _start;
             _enabled = false;
             _complete = false;
         }
 
-        public void EnableSprite()
+        /// <summary>
+        /// Select the markers for this task
+        /// </summary>
+        public void Select()
         {
-            _start.EnableSpriteRecursive();
+            _start.Select();
         }
 
-        public void DisableSpriteIfDisabled()
+        /// <summary>
+        /// Deselect the markers for this task
+        /// </summary>
+        public void Deselect()
         {
-            if (!_enabled) _start.DisableSpriteRecursive();
+            _start.Deselect();
         }
 
-        public void EnableMinimap()
-        {
-            _start.EnableMinimapRecursive();
-        }
+//        public void EnableSprite()
+//        {
+//        }
 
-        public void DisableMinimapIfDisabled()
-        {
-            if (!_enabled) _start.DisableMinimapRecursive();
-        }
+//        public void DisableSpriteIfDisabled()
+//        {
+//            if (!_enabled) _start.DisableSpriteRecursive();
+//        }
+
+//        public void EnableMinimap()
+//        {
+//            _start.EnableMinimapRecursive();
+//        }
+
+//        public void DisableMinimapIfDisabled()
+//        {
+//            if (!_enabled) _start.DisableMinimapRecursive();
+//        }
 
         public void Recalculate()
         {
             // Revert to starting state, maintaining enabled state
-            _start.Disable();
+            _start.Deactivate();
             TaskUncomplete();
             _head = _start;
             // Recalculate completion if enabled
@@ -105,6 +131,7 @@ namespace Data
         /// </summary>
         public void TaskComplete()
         {
+            if (_complete) return;
             _complete = true;
             _levelController.CompleteTask(this);
         }

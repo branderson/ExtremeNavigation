@@ -43,6 +43,9 @@ namespace Controllers
 
         private void HandleZoom()
         {
+            // Don't zoom if on planner
+            if (Input.mousePosition.x > _camera.pixelWidth) return;
+
             _scrollAccumulator += Input.GetAxis("Mouse ScrollWheel");
 
             // Zoom if scrolled enough
@@ -127,7 +130,8 @@ namespace Controllers
                     float val = _edgeScrollSpeed * (Input.mousePosition.x - cameraWidth/10f) / (.1f * cameraWidth);
                     if (val < hor)
                     {
-                        hor = val;
+//                        hor = val;
+                        hor = -_edgeScrollSpeed;
                     }
                 }
                 else if (Input.mousePosition.x > 9*cameraWidth/10f && Input.mousePosition.x < cameraWidth)
@@ -135,7 +139,8 @@ namespace Controllers
                     float val = _edgeScrollSpeed * (Input.mousePosition.x - 9*cameraWidth/10f)/(.1f*cameraWidth);
                     if (val > hor)
                     {
-                        hor = val;
+//                        hor = val;
+                        hor = _edgeScrollSpeed;
                     }
                 }
                 if (Input.mousePosition.y < cameraHeight/5f && Input.mousePosition.x < cameraWidth)
@@ -143,7 +148,8 @@ namespace Controllers
                     float val = _edgeScrollSpeed * (Input.mousePosition.y - cameraHeight/5f) / (cameraHeight * 1/5f);
                     if (val < ver)
                     {
-                        ver = val;
+//                        ver = val;
+                        ver = -_edgeScrollSpeed;
                     }
                 }
                 else if (Input.mousePosition.y > 4*cameraHeight/5f && Input.mousePosition.x < cameraWidth)
@@ -151,7 +157,8 @@ namespace Controllers
                     float val = _edgeScrollSpeed * (Input.mousePosition.y - 4*cameraHeight/5f)/(cameraHeight * 1/5f);
                     if (val > ver)
                     {
-                        ver = val;
+//                        ver = val;
+                        ver = _edgeScrollSpeed;
                     }
                 }
 		    }

@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4818343597164056}
   - component: {fileID: 212163654213957156}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AvailableSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4341743332072968}
   - component: {fileID: 212633582326164474}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PathSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

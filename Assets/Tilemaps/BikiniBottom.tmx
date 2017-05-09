@@ -137,8 +137,8 @@
  <tileset firstgid="22" name="DecorationTileset" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="Tilesets/DecorationTileset.png" trans="ffffff" width="64" height="64"/>
  </tileset>
- <tileset firstgid="26" name="LevelElements" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="Tilesets/LevelElementTileset.png" trans="ffffff" width="32" height="32"/>
+ <tileset firstgid="26" name="LevelElements" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="Tilesets/LevelElementTileset.png" trans="ffffff" width="64" height="64"/>
   <tile id="0">
    <properties>
     <property name="Name" value="Player"/>
@@ -178,6 +178,7 @@
  <layer name="Sheldon" width="10" height="10">
   <properties>
    <property name="Description" value="Pick up a burger and take it to Sheldon"/>
+   <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="15"/>
   </properties>
@@ -188,6 +189,7 @@
  <layer name="Cassandra" width="10" height="10">
   <properties>
    <property name="Description" value="Take Cassandra to Texas Ave."/>
+   <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="50"/>
   </properties>
@@ -198,6 +200,7 @@
  <layer name="Robert" width="10" height="10">
   <properties>
    <property name="Description" value="Hahahahaha"/>
+   <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="20"/>
   </properties>
@@ -208,6 +211,7 @@
  <layer name="Patrick" width="10" height="10">
   <properties>
    <property name="Description" value="Blow bubbles with Patrick"/>
+   <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="10"/>
   </properties>
@@ -218,6 +222,7 @@
  <layer name="Eugene" width="10" height="10">
   <properties>
    <property name="Description" value="Lend Eugene some money"/>
+   <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="20"/>
   </properties>

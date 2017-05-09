@@ -3,6 +3,7 @@ using Data;
 using Helpers;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utility;
 
 namespace Controllers
@@ -50,18 +51,19 @@ namespace Controllers
         private void Awake()
         {
             _player = FindObjectOfType<PlayerController>();
+            _startingPosition = _player.CurrentPosition;
 //            _route = new Route();
             _gameCamera = FindObjectOfType<GameCameraController>().GetComponent<Camera>();
-//            _roadTiles = FindObjectsOfType<RoadTileController>();
             _timeUI = FindObjectOfType<TimeUIController>();
             _moneyUI = FindObjectOfType<MoneyUIController>();
+
+            // Move camera
+//            _gameCamera.transform.position = _player.transform.position;
         }
 
         private void Start()
         {
-//            _path = new LinkedList<RoadTileController> {_player.CurrentPosition };
             _path = new LinkedList<RoadTileController>();
-            _startingPosition = _player.CurrentPosition;
             _path.AddFirst(_startingPosition);
 
             _taskList = FindObjectOfType<TaskListController>();
@@ -187,6 +189,11 @@ namespace Controllers
             _player.Run();
         }
 
+        public void Restart()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         private void RecalcuateTime()
         {
             _timer.ResetTime();
@@ -264,7 +271,7 @@ namespace Controllers
         public void UncompleteTask(Task task, bool active)
         {
             // Remove money
-            _money -= task.Value;
+//            _money -= task.Value;
             _moneyUI.SetMoney(_money);
 
             // Move back to list

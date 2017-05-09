@@ -1144,12 +1144,12 @@ Prefab:
     - target: {fileID: 114676757258534040, guid: eef4befd62311d7448e15841135dde59,
         type: 2}
       propertyPath: _minScale
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114676757258534040, guid: eef4befd62311d7448e15841135dde59,
         type: 2}
       propertyPath: _defaultScale
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eef4befd62311d7448e15841135dde59, type: 2}

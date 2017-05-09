@@ -61,5 +61,11 @@ namespace UI.Components
                 firstButton.OpenPanel();
             }
         }
+
+        public void OpenPanel(int panelIndex)
+        {
+            if (panelIndex >= _buttons.Count) return;
+            _buttons[panelIndex].OpenPanel();
+        }
     }
 }

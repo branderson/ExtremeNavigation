@@ -24,6 +24,14 @@ namespace UI.Components
             get { return _options.Select(item => item.name).ToList(); }
         }
 
+        /// <summary>
+        /// Get a list of names of options in the list
+        /// </summary>
+        public List<ISelectable> OptionObjects
+        {
+            get { return _options.Select(item => item.GetComponent<ISelectable>()).ToList(); }
+        }
+
         private ScrollRect Scroll
         {
             get

@@ -15,11 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: f79cff9526e169547bf9531e79c8e8b1
   - enabled: 1
-    path: Assets/Scenes/TemplateScene.unity
-    guid: 15f9adefdd57a784c9fcf1a22a75fcd2
+    path: Assets/Scenes/ExampleMapScene.unity
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/BikiniBottomScene.unity
-    guid: 00000000000000000000000000000000
+    guid: 06da2d044c964b240a0379ea81889494
   - enabled: 1
     path: Assets/Scenes/CulDeSacScene.unity
     guid: cc01035ca9040d24d83f0c1180046fc5

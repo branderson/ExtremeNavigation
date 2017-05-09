@@ -15,11 +15,13 @@ namespace UI
         private List<Task> _activeTasks = new List<Task>();
         private Task _selected = null;
 
+        private TabbedPanelGroup _tabGroup;
         private LevelController _levelController;
 
         private void Awake()
         {
             _levelController = FindObjectOfType<LevelController>();
+            _tabGroup = GetComponentInChildren<TabbedPanelGroup>();
         }
 
         private void Start()
@@ -34,6 +36,56 @@ namespace UI
             _activeTasks.Clear();
             RefreshAvailable();
             RefreshActive();
+        }
+
+        public void SelectTask(Task task)
+        {
+            // Get current selection
+            ISelectable current = _availableList.GetSelected().FirstOrDefault() ?? _activeList.GetSelected().FirstOrDefault();
+            if (current != null)
+            {
+                if (_selected != null) _selected.Deselect();
+                current.Deselect();
+            }
+            _selected = null;
+
+            if (task == null) return;
+            // Get selected task button. Search in available list
+            ISelectable taskButton = _availableList.OptionObjects.FirstOrDefault(item => item.GetText().StartsWith(task.Name));
+            if (taskButton == null)
+            {
+                // Search in active list
+                taskButton = _activeList.OptionObjects.FirstOrDefault(item => item.GetText().StartsWith(task.Name));
+                if (taskButton == null) return;
+                // Make sure we're in the active list
+                _tabGroup.OpenPanel(1);
+            }
+            else
+            {
+                // Make sure we're in the available list
+                _tabGroup.OpenPanel(0);
+            }
+            if (task == _selected)
+            {
+                // Deselect task
+                taskButton.Deselect();
+                _selected = null;
+
+                // Disable minimap sprite
+                task.Deselect();
+            }
+            else
+            {
+                // Deselect current selection
+                DeselectTask();
+
+                // Select task
+                taskButton.Select();
+                _selected = task;
+
+                // Enable minimap sprite
+                task.Select();
+            }
         }
 
         public void SelectTask(ISelectable taskButton)

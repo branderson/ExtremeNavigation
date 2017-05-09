@@ -31,7 +31,8 @@ namespace Controllers
              * Camera needs to be offset by .1f from whole numbers on the Y-axis initially or we 
              * have alignment problems with the pixel grid
              */
-             transform.position = new Vector3(transform.position.x, Mathf.Floor(transform.position.y) + .1f, transform.position.z);
+//             transform.position = new Vector3(transform.position.x, Mathf.Floor(transform.position.y) + .1f, transform.position.z);
+//            transform.position += new Vector3(0, .1f, 0);
         }
 
         private void Update()
@@ -44,20 +45,31 @@ namespace Controllers
         private void HandleZoom()
         {
             // Don't zoom if on planner
-            if (Input.mousePosition.x > _camera.pixelWidth) return;
+            if (Input.mousePosition.x <= _camera.pixelWidth)
+            {
+                _scrollAccumulator += Input.GetAxis("Mouse ScrollWheel");
 
-            _scrollAccumulator += Input.GetAxis("Mouse ScrollWheel");
+                // Zoom if scrolled enough
+                if (_scrollAccumulator > _scrollThreshold)
+                {
+                    _currentScale = _ppCamera.Zoom(1);
+                    _scrollAccumulator = 0;
+                }
+                else if (_scrollAccumulator < -_scrollThreshold)
+                {
+                    _currentScale = _ppCamera.Zoom(-1);
+                    _scrollAccumulator = 0;
+                }
+            }
 
-            // Zoom if scrolled enough
-            if (_scrollAccumulator > _scrollThreshold)
+            // Prevent zooming which would display larger than map
+            float cameraExtentY = _camera.orthographicSize;
+            float cameraExtentX = cameraExtentY * _camera.pixelWidth / _camera.pixelHeight;
+            while (cameraExtentX > _levelController.Bounds.width / 2f || cameraExtentY > _levelController.Bounds.height / 2f)
             {
                 _currentScale = _ppCamera.Zoom(1);
-                _scrollAccumulator = 0;
-            }
-            else if (_scrollAccumulator < -_scrollThreshold)
-            {
-                _currentScale = _ppCamera.Zoom(-1);
-                _scrollAccumulator = 0;
+                cameraExtentY = _camera.orthographicSize;
+                cameraExtentX = cameraExtentY * _camera.pixelWidth / _camera.pixelHeight;
             }
         }
 

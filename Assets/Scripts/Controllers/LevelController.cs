@@ -59,9 +59,6 @@ namespace Controllers
             // Load tasks
             _taskList = FindObjectOfType<TaskListController>();
             _taskList.AddTasks(_tasks);
-
-            // Move camera
-//            _gameCamera.transform.position = _player.transform.position;
         }
 
         private void Start()
@@ -76,6 +73,9 @@ namespace Controllers
 
             _path = new LinkedList<RoadTileController>();
             _path.AddFirst(_startingPosition);
+
+            // Move camera
+            _gameCamera.transform.position = _player.transform.position + new Vector3(0, .1f, 0);
         }
 
         private void Update()
@@ -83,6 +83,12 @@ namespace Controllers
             switch (_state)
             {
                 case GameState.Routing:
+                    // Select map elements
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        HandleClick();
+                    }
+
                     // Allow path drawing while left mouse button down
                     if (Input.GetMouseButton(0))
                     {
@@ -102,6 +108,25 @@ namespace Controllers
                     break;
                 case GameState.Running:
                     break;
+            }
+        }
+
+        private void HandleClick()
+        {
+            // Find Marker under mouse
+            Marker marker = null;
+            Vector3 mousePosition = Input.mousePosition;
+            // Check for all colliding objects
+            Collider2D[] cols = Physics2D.OverlapPointAll(_gameCamera.ScreenToWorldPoint(mousePosition));
+            foreach (Collider2D col in cols)
+            {
+                // Check each colliding object to find RoadTile
+                marker = col.GetComponent<Marker>();
+                break;
+            }
+            if (marker != null)
+            {
+                _taskList.SelectTask(marker.Task);
             }
         }
 
@@ -175,7 +200,7 @@ namespace Controllers
             RecalcuateTime();
             _moneyUI.SetMoney(_money);
 
-            if (prev != null) _player.MoveTo(prev.Value, move);
+            if (current != null) _player.MoveTo(current, move);
 
             // Set new head as path head
             _path.Last.Value.SetHead(move, _timer.Time);

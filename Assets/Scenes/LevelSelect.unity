@@ -572,7 +572,7 @@ Prefab:
     - target: {fileID: 114876531715683058, guid: 3f401fff42edb3746b74880b553fce54,
         type: 2}
       propertyPath: _sceneName
-      value: BikiniBottomScene
+      value: RushHourScene
       objectReference: {fileID: 0}
     - target: {fileID: 224454072237200186, guid: 3f401fff42edb3746b74880b553fce54,
         type: 2}
@@ -596,7 +596,7 @@ Prefab:
     - target: {fileID: 114336883029617546, guid: 3f401fff42edb3746b74880b553fce54,
         type: 2}
       propertyPath: m_Text
-      value: Bikini Bottom
+      value: Rush Hour
       objectReference: {fileID: 0}
     - target: {fileID: 114610791996549698, guid: 3f401fff42edb3746b74880b553fce54,
         type: 2}

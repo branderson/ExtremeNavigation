@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="75">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="115">
  <properties>
   <property name="Name" value="Map"/>
   <property name="Time" type="int" value="50"/>
@@ -166,6 +166,44 @@
   <properties>
    <property name="Height" type="float" value="1"/>
   </properties>
+  <object id="77" gid="22" x="32" y="64" width="32" height="32"/>
+  <object id="78" gid="22" x="64" y="96" width="32" height="32"/>
+  <object id="79" gid="22" x="128" y="160" width="32" height="32"/>
+  <object id="80" gid="22" x="160" y="160" width="32" height="32"/>
+  <object id="81" gid="22" x="224" y="96" width="32" height="32"/>
+  <object id="82" gid="22" x="256" y="160" width="32" height="32"/>
+  <object id="83" gid="22" x="224" y="128" width="32" height="32"/>
+  <object id="84" gid="22" x="224" y="256" width="32" height="32"/>
+  <object id="85" gid="22" x="64" y="256" width="32" height="32"/>
+  <object id="86" gid="22" x="32" y="288" width="32" height="32"/>
+  <object id="87" gid="22" x="128" y="288" width="32" height="32"/>
+  <object id="88" gid="22" x="32" y="192" width="32" height="32"/>
+  <object id="89" gid="22" x="160" y="96" width="32" height="32"/>
+  <object id="90" gid="23" x="64" y="64" width="32" height="32"/>
+  <object id="91" gid="23" x="128" y="96" width="32" height="32"/>
+  <object id="92" gid="23" x="224" y="64" width="32" height="32"/>
+  <object id="93" gid="23" x="256" y="128" width="32" height="32"/>
+  <object id="94" gid="23" x="224" y="192" width="32" height="32"/>
+  <object id="95" gid="23" x="160" y="256" width="32" height="32"/>
+  <object id="96" gid="23" x="160" y="288" width="32" height="32"/>
+  <object id="97" gid="23" x="224" y="288" width="32" height="32"/>
+  <object id="98" gid="23" x="32" y="256" width="32" height="32"/>
+  <object id="99" gid="23" x="32" y="160" width="32" height="32"/>
+  <object id="100" gid="24" x="32" y="96" width="32" height="32"/>
+  <object id="101" gid="24" x="128" y="64" width="32" height="32"/>
+  <object id="102" gid="24" x="160" y="64" width="32" height="32"/>
+  <object id="103" gid="24" x="256" y="96" width="32" height="32"/>
+  <object id="104" gid="24" x="224" y="160" width="32" height="32"/>
+  <object id="105" gid="24" x="256" y="192" width="32" height="32"/>
+  <object id="106" gid="24" x="256" y="64" width="32" height="32"/>
+  <object id="107" gid="24" x="64" y="192" width="32" height="32"/>
+  <object id="108" gid="24" x="64" y="160" width="32" height="32"/>
+  <object id="109" gid="24" x="128" y="192" width="32" height="32"/>
+  <object id="110" gid="24" x="128" y="256" width="32" height="32"/>
+  <object id="111" gid="24" x="64" y="288" width="32" height="32"/>
+  <object id="112" gid="24" x="256" y="256" width="32" height="32"/>
+  <object id="113" gid="23" x="256" y="288" width="32" height="32"/>
+  <object id="114" gid="23" x="160" y="192" width="32" height="32"/>
  </objectgroup>
  <layer name="Obstacles" width="10" height="10">
   <properties>
@@ -175,9 +213,9 @@
    eJxjYBi5QGqgHYAFAAAQmAAb
   </data>
  </layer>
- <layer name="Sheldon" width="10" height="10">
+ <layer name="Toddler Terror" width="10" height="10">
   <properties>
-   <property name="Description" value="Pick up a burger and take it to Sheldon"/>
+   <property name="Description" value="Help Fred find his baby!"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="15"/>
@@ -186,9 +224,9 @@
    eJxjYCAfiOAQF6XAzJEOADYMACo=
   </data>
  </layer>
- <layer name="Cassandra" width="10" height="10">
+ <layer name="Moving Day" width="10" height="10">
   <properties>
-   <property name="Description" value="Take Cassandra to Texas Ave."/>
+   <property name="Description" value="Begrudgingly help Cassandra move"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="50"/>
@@ -197,9 +235,9 @@
    eJxjYKAOEKWSOUMRiFDRLAAiaAAq
   </data>
  </layer>
- <layer name="Robert" width="10" height="10">
+ <layer name="Dead Battery" width="10" height="10">
   <properties>
-   <property name="Description" value="Hahahahaha"/>
+   <property name="Description" value="Jumpstart Rob's car in the middle of the road!"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="20"/>
@@ -208,9 +246,9 @@
    eJxjYCANiJCofhSQBgAdEAAV
   </data>
  </layer>
- <layer name="Patrick" width="10" height="10">
+ <layer name="Bubble Stand" width="10" height="10">
   <properties>
-   <property name="Description" value="Blow bubbles with Patrick"/>
+   <property name="Description" value="Blow bubble giraffes with patrick"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="10"/>
@@ -219,9 +257,9 @@
    eJxjYBgaQGSgHUAnAAATsAAV
   </data>
  </layer>
- <layer name="Eugene" width="10" height="10">
+ <layer name="Pit Stop" width="10" height="10">
   <properties>
-   <property name="Description" value="Lend Eugene some money"/>
+   <property name="Description" value="Pick up some deodorant"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="20"/>

@@ -34,17 +34,17 @@ namespace Data
         {
             EventManager.Instance.StartListening("PopTile", Recalculate);
             _start = _head;
-        }
-
-        private void Start()
-        {
-            Disable();
             Marker node = _start;
             while (node != null)
             {
                 Count++;
                 node = node.Next;
             }
+        }
+
+        private void Start()
+        {
+            Disable();
         }
 
 

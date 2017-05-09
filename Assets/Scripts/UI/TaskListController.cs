@@ -22,6 +22,12 @@ namespace UI
             _levelController = FindObjectOfType<LevelController>();
         }
 
+        private void Start()
+        {
+            RefreshAvailable();
+            RefreshActive();
+        }
+
         public void ClearTasks()
         {
             _availableTasks.Clear();

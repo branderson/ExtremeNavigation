@@ -58,12 +58,6 @@ namespace Data
             _valueText.text = Task.Name + "\n$" + Task.Value.ToString();
         }
 
-        private void Start()
-        {
-            // Disable sprites
-            SetState(MarkerState.Inactive);
-        }
-
         public void Select()
         {
             if (Next != null) Next.Select();

@@ -56,15 +56,16 @@ namespace Controllers
             _timeUI = FindObjectOfType<TimeUIController>();
             _moneyUI = FindObjectOfType<MoneyUIController>();
 
+            // Load tasks
+            _taskList = FindObjectOfType<TaskListController>();
+            _taskList.AddTasks(_tasks);
+
             // Move camera
 //            _gameCamera.transform.position = _player.transform.position;
         }
 
         private void Start()
         {
-            _taskList = FindObjectOfType<TaskListController>();
-            _taskList.AddTasks(_tasks);
-
             // Initialize UI
             _timeUI.SetTime(_timer);
             _moneyUI.SetMoney(_money);

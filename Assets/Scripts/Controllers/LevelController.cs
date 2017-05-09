@@ -62,9 +62,6 @@ namespace Controllers
 
         private void Start()
         {
-            _path = new LinkedList<RoadTileController>();
-            _path.AddFirst(_startingPosition);
-
             _taskList = FindObjectOfType<TaskListController>();
             _taskList.AddTasks(_tasks);
 
@@ -75,6 +72,9 @@ namespace Controllers
             // Initialize starting position
             _startingPosition = _player.CurrentPosition;
             _startingPosition.MovedTo(Move.Stay, _timer.Time);
+
+            _path = new LinkedList<RoadTileController>();
+            _path.AddFirst(_startingPosition);
         }
 
         private void Update()

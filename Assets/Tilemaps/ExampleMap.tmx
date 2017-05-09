@@ -137,8 +137,8 @@
  <tileset firstgid="22" name="DecorationTileset" tilewidth="32" tileheight="32" tilecount="4" columns="2">
   <image source="Tilesets/DecorationTileset.png" trans="ffffff" width="64" height="64"/>
  </tileset>
- <tileset firstgid="26" name="LevelElements" tilewidth="32" tileheight="32" tilecount="1" columns="1">
-  <image source="Tilesets/LevelElementTileset.png" trans="ffffff" width="32" height="32"/>
+ <tileset firstgid="26" name="LevelElements" tilewidth="32" tileheight="32" tilecount="4" columns="2">
+  <image source="Tilesets/LevelElementTileset.png" trans="ffffff" width="64" height="64"/>
   <tile id="0">
    <properties>
     <property name="Name" value="Player"/>
@@ -218,15 +218,15 @@
    <property name="Description" value="Save Cuddles the Cat from Carlos's evil clutches!"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
-   <property name="Value" type="int" value="10"/>
+   <property name="Value" type="int" value="5"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJxjYBieQGSgHUAmAAAP8AAV
   </data>
  </layer>
- <layer name="Grandma's Booze" width="10" height="10">
+ <layer name="Grandma's Goods" width="10" height="10">
   <properties>
-   <property name="Description" value="Bring Grandma to liquor store, then bingo night"/>
+   <property name="Description" value="Bring Grandma to &quot;grocery&quot; store, then bingo night"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
    <property name="Value" type="int" value="20"/>
@@ -237,10 +237,10 @@
  </layer>
  <layer name="Taco Delivery" width="10" height="10">
   <properties>
-   <property name="Description" value="Bring taco to Phil"/>
+   <property name="Description" value="Bring Phil some tacos before he dies of starvation!"/>
    <property name="Height" type="float" value="3"/>
    <property name="Name" value="TaskLayer"/>
-   <property name="Value" type="int" value="5"/>
+   <property name="Value" type="int" value="10"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJxjYKA+EKWBmYMZiFDRLAAhbAAq

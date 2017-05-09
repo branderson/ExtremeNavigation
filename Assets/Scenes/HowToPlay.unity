@@ -394,7 +394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 97, y: 0}
+  m_AnchoredPosition: {x: 97, y: -25}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &354544816
@@ -429,7 +429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -31.1, y: 0}
+  m_AnchoredPosition: {x: -31.1, y: -25}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &375309294
@@ -1067,7 +1067,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -174, y: -117}
+  m_AnchoredPosition: {x: -174, y: -96}
   m_SizeDelta: {x: -403, y: -272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1206117746
@@ -1103,7 +1103,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: some tasks have more than one stop!
+  m_Text: some tasks have more than one stop. Be sure to hit them in order!
 --- !u!222 &1206117747
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1789,7 +1789,7 @@ Prefab:
     - target: {fileID: 114377409345852836, guid: 3583c0c75edbed74fb3835d7b799e602,
         type: 2}
       propertyPath: m_Text
-      value: Your goal is to make the most money in a given amount of time.
+      value: Your goal is to make the most money within the allotted time.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3583c0c75edbed74fb3835d7b799e602, type: 2}
@@ -1833,7 +1833,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -174, y: -10}
+  m_AnchoredPosition: {x: -174, y: 11}
   m_SizeDelta: {x: -403, y: -272}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564329298
@@ -1869,8 +1869,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: click to select tasks from the planner menu, and their stops will appear
-    on the main and mini map.
+  m_Text: Click to select tasks from the planner menu and press "Activate Task" to
+    add their stops to the main and mini map.
 --- !u!222 &1564329299
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2056,6 +2056,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -131.8, y: 0}
+  m_AnchoredPosition: {x: -131.8, y: -25}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

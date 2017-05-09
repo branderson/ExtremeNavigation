@@ -2,6 +2,7 @@
 using System.Linq;
 using Controllers;
 using Data;
+using TiledLoader;
 using UI.Components;
 using UnityEngine;
 
@@ -206,17 +207,15 @@ namespace UI
             _activeList.Populate(_activeTasks.Select(item => TaskToString(item)).ToList());
         }
 
-        private string TaskToString(Task task)
+        private TiledLoaderPropertyData TaskToString(Task task)
         {
-            string red = "#EA3F3F";
-            string yellow = "#FFDE2A";
-            string green = "#A8D139";
-            int count = task.Count;
-            string val = task.Name + " $" + task.Value;
-            if (count > 1) val += " <color=" + green + ">@</color>";
-            if (count > 2) val += " <color=" + yellow + ">@</color>";
-            val += " <color=" + red + ">@</color>";
-            return val;
+            // Add name and value
+            TiledLoaderPropertyData properties = new TiledLoaderPropertyData();
+            properties.SetProperty("Name", task.Name);
+            properties.SetProperty("Value", task.Value);
+            properties.SetProperty("Description", task.Description);
+            properties.SetProperty("Count", task.Count);
+            return properties;
         }
     }
 }

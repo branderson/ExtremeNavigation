@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TiledLoader;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,27 +50,26 @@ namespace UI.Components
         }
 
         /// <summary>
-        /// Populates the scroll list with instances of the option template whose text components 
+        /// Populates the scroll list with instances of the option template whose ListOption components 
         /// match the given list
         /// </summary>
         /// <param name="options">
-        /// List of strings to assign to text fields of instantiated options
+        /// List of ListOptions to assign to instantiated options
         /// </param>
-	    public void Populate(List<string> options)
+	    public void Populate(List<TiledLoaderPropertyData> options)
 	    {
+            // TODO: Return ListOption from get calls
             if (_options == null) _options = new List<GameObject>();
             Depopulate();
-	        foreach (string option in options)
+	        foreach (TiledLoaderPropertyData option in options)
 	        {
                 GameObject optionObject = Instantiate(_optionTemplate) as GameObject;
                 optionObject.SetActive(true);
-	            optionObject.name = option;
-	            optionObject.GetComponentInChildren<Text>().text = option;
+                optionObject.GetComponent<ListOption>().Configure(option);
 	            optionObject.GetComponent<SelectableButton>().SetFunction(_selectFunction);
 	            RectTransform optionRect = optionObject.GetComponent<RectTransform>();
                 optionRect.SetParent(Scroll.content, false);
                 _options.Add(optionObject);
-//                optionRect.offsetMin = new Vector2(optionRect.offsetMin.x, optionRect.offsetMin.y - 30);
 	        }
 	    }
 

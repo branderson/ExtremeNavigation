@@ -35,6 +35,16 @@ namespace UI
             FindObjectOfType<LevelController>().RunPath();
         }
 
+        public void QuitGame()
+        {
+            FindObjectOfType<LevelController>().EndLevel();
+        }
+
+        public void CenterCamera()
+        {
+            FindObjectOfType<LevelController>().CenterCamera();
+        }
+
         private void OpenPanel()
         {
             _open = true;

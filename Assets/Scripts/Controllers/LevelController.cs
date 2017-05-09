@@ -32,6 +32,7 @@ namespace Controllers
         private Camera _gameCamera;
 //        private RoadTileController[] _roadTiles;
         private TaskListController _taskList;
+        private UIPanelController _gameUI;
         private TimeUIController _timeUI;
         private MoneyUIController _moneyUI;
 
@@ -53,6 +54,7 @@ namespace Controllers
             _player = FindObjectOfType<PlayerController>();
 //            _route = new Route();
             _gameCamera = FindObjectOfType<GameCameraController>().GetComponent<Camera>();
+            _gameUI = FindObjectOfType<UIPanelController>();
             _timeUI = FindObjectOfType<TimeUIController>();
             _moneyUI = FindObjectOfType<MoneyUIController>();
 
@@ -74,12 +76,22 @@ namespace Controllers
             _path = new LinkedList<RoadTileController>();
             _path.AddFirst(_startingPosition);
 
-            // Move camera
-            _gameCamera.transform.position = _player.transform.position + new Vector3(0, .1f, 0);
+            CenterCamera();
         }
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+
+            // Toggle panel
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                _gameUI.TogglePanel();
+            }
+
             switch (_state)
             {
                 case GameState.Routing:
@@ -100,15 +112,16 @@ namespace Controllers
                     {
                         PopPath();
                     }
-
-                    if (Input.GetKeyDown(KeyCode.Escape))
-                    {
-                        SceneManager.LoadScene("MainMenu");
-                    }
                     break;
                 case GameState.Running:
                     break;
             }
+        }
+
+        public void CenterCamera()
+        {
+            // Move camera
+            _gameCamera.transform.position = _player.transform.position + new Vector3(0, .1f, _gameCamera.transform.position.z);
         }
 
         private void HandleClick()

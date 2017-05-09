@@ -37,6 +37,12 @@ namespace Controllers
 
         private void Update()
         {
+            // Center camera
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                _levelController.CenterCamera();
+            }
+
             HandleZoom();
 
             HandleMovement();
